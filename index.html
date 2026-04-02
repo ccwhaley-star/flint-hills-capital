@@ -9,6 +9,7 @@
 <meta property="og:description" content="AI-first real estate investment in self storage and flex space across secondary Kansas markets.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flinthills.capital">
+<link rel="icon" type="image/png" href="logo-bison.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
@@ -226,7 +227,7 @@ nav.scrolled {
 }
 
 /* ── SECTIONS ── */
-section { padding: 6.5rem 2rem; }
+section { padding: 4.5rem 2rem; }
 .container { max-width: 960px; margin: 0 auto; }
 
 .section-label {
@@ -292,7 +293,7 @@ section { padding: 6.5rem 2rem; }
 /* ── STATS ── */
 .stats {
   background: var(--navy);
-  padding: 5rem 2rem;
+  padding: 3.5rem 2rem;
   position: relative;
 }
 .stats::before,
@@ -382,62 +383,6 @@ section { padding: 6.5rem 2rem; }
   color: var(--navy);
   font-weight: 500;
   border-radius: 1px;
-}
-.facility-tag.pipeline {
-  background: rgba(184,147,90,0.15);
-  color: var(--gold);
-  font-weight: 600;
-}
-
-/* ── PIPELINE ── */
-.pipeline-section { background: #fff; }
-.pipeline-cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-.pipeline-card {
-  background: var(--warm-white);
-  border: 1px solid #e8e4de;
-  border-left: 3px solid var(--gold);
-  padding: 2rem;
-  transition: box-shadow 0.35s ease, transform 0.35s ease;
-}
-.pipeline-card:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.05);
-  transform: translateY(-2px);
-}
-.pipeline-status {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.pipeline-status::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  display: inline-block;
-  animation: pulse-dot 2s infinite;
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-.pipeline-card .facility-name { margin-bottom: 0.3rem; }
-.pipeline-card .facility-meta { margin-bottom: 0.75rem; }
-.pipeline-desc {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  line-height: 1.7;
 }
 
 /* ── SPOTLIGHT ── */
@@ -534,7 +479,7 @@ section { padding: 6.5rem 2rem; }
 .contact {
   background: var(--navy);
   text-align: center;
-  padding: 5.5rem 2rem;
+  padding: 4rem 2rem;
   position: relative;
 }
 .contact::before {
@@ -644,7 +589,8 @@ footer p {
   .thesis-pillars { grid-template-columns: 1fr; gap: 1.5rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .stat-item:not(:last-child)::after { display: none; }
-  .portfolio-grid, .pipeline-cards { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .facility-card img { width: 140px !important; height: 90px !important; }
   .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
   .hero { padding: 7rem 1.5rem 4.5rem; }
   section { padding: 4.5rem 1.5rem; }
@@ -760,40 +706,53 @@ footer p {
     <p class="section-text reveal">Every property operates under our centralized, no-on-site-staff management model through Midwest Storage Solutions, our operating subsidiary.</p>
 
     <div class="portfolio-grid reveal-stagger">
-      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="facility-name">Reno County Storage</div>
-        <div class="facility-meta">Hutchinson, KS · 328 Units</div>
-        <div class="facility-tags">
-          <span class="facility-tag">Climate-Controlled</span>
-          <span class="facility-tag">Drive-Up</span>
+      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
+        <div style="flex:1;">
+          <div class="facility-name">Reno County Storage</div>
+          <div class="facility-meta">Hutchinson, KS · 328 Units</div>
+          <div class="facility-tags">
+            <span class="facility-tag">Drive-Up</span>
+            <span class="facility-tag">Office Conversion</span>
+          </div>
+          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
         </div>
-        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+        <img src="reno-dusk.webp" alt="Reno County Storage at dusk" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
       </a>
-      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="facility-name">Reno County Storage — South</div>
-        <div class="facility-meta">South Hutchinson, KS · 149 Units</div>
-        <div class="facility-tags">
-          <span class="facility-tag">Drive-Up</span>
+      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
+        <div style="flex:1;">
+          <div class="facility-name">Reno County Storage — South</div>
+          <div class="facility-meta">South Hutchinson, KS · 149 Units</div>
+          <div class="facility-tags">
+            <span class="facility-tag">Drive-Up</span>
+            <span class="facility-tag">Flex</span>
+          </div>
+          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
         </div>
-        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+        <img src="s-hutch.webp" alt="Reno County Storage South" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
       </a>
-      <a href="https://labettecountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="facility-name">Labette County Storage</div>
-        <div class="facility-meta">Parsons, KS · 244 Units</div>
-        <div class="facility-tags">
-          <span class="facility-tag">Climate-Controlled</span>
-          <span class="facility-tag">Drive-Up</span>
+      <a href="https://labettecountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
+        <div style="flex:1;">
+          <div class="facility-name">Labette County Storage</div>
+          <div class="facility-meta">Parsons, KS · 244 Units</div>
+          <div class="facility-tags">
+            <span class="facility-tag">Drive-Up</span>
+            <span class="facility-tag">Expansion</span>
+          </div>
+          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">labettecountystorage.com ↗</div>
         </div>
-        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">labettecountystorage.com ↗</div>
+        <img src="labette-drone.jpg" alt="Labette County Storage aerial view" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
       </a>
-      <a href="https://bourboncountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
-        <div class="facility-name">Bourbon County Storage</div>
-        <div class="facility-meta">Fort Scott, KS · 84 Units</div>
-        <div class="facility-tags">
-          <span class="facility-tag">Drive-Up</span>
-          <span class="facility-tag">Ground-Up Development</span>
+      <a href="https://bourboncountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
+        <div style="flex:1;">
+          <div class="facility-name">Bourbon County Storage</div>
+          <div class="facility-meta">Fort Scott, KS · 84 Units</div>
+          <div class="facility-tags">
+            <span class="facility-tag">Drive-Up</span>
+            <span class="facility-tag">Ground-Up Development</span>
+          </div>
+          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">bourboncountystorage.com ↗</div>
         </div>
-        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">bourboncountystorage.com ↗</div>
+        <img src="bourbon-unit.webp" alt="Bourbon County Storage unit" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
       </a>
     </div>
   </div>
@@ -844,7 +803,7 @@ footer p {
     <h2 class="section-title reveal">Founder &amp; Operator</h2>
 
     <div class="leader-block reveal">
-      <div class="leader-name">Chris</div>
+      <div class="leader-name">Chris Whaley</div>
       <div class="leader-title">Founder &amp; Managing Principal</div>
       <p class="leader-bio">Chris founded Flint Hills Capital in 2020 after 25 years in technology sales, consulting and go-to-market strategy. He saw an opportunity to apply the same data-driven, technology-first approach to an industry still largely run on paper and phone calls.</p>
       <p class="leader-bio">He built the portfolio from zero to 9 facilities, selling 5, developed the self-management operating model that powers Midwest Storage Solutions, and personally oversees every acquisition, development project, and capital transaction. He grew up near Lawrence, Kansas, and lives in Overland Park.</p>
@@ -862,6 +821,7 @@ footer p {
     <p><a href="tel:6209018450">(620) 901-8450</a></p>
     <p><a href="mailto:info@flinthills.capital">info@flinthills.capital</a></p>
   </div>
+  <a href="mailto:info@flinthills.capital" class="hero-cta" style="margin-top:2.5rem;opacity:1;animation:none;">Send Us a Message</a>
 </section>
 
 <!-- FOOTER -->
