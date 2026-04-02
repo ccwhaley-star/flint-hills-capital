@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flint Hills Capital — Self Storage & Flex Space Investment</title>
+<meta name="description" content="Flint Hills Capital is a self-funded real estate investment company focused on self storage and flex space in secondary Kansas markets. AI-first operations, 14-24% expense ratios.">
+<meta property="og:title" content="Flint Hills Capital — Self Storage & Flex Space Investment">
+<meta property="og:description" content="AI-first real estate investment in self storage and flex space across secondary Kansas markets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flinthills.capital">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0c1e2f;
+  --navy-mid: #132d45;
+  --slate: #1a3a54;
+  --steel: #8fa3b8;
+  --silver: #c2d0dc;
+  --cream: #f0ece4;
+  --warm-white: #f8f6f2;
+  --gold: #b8935a;
+  --gold-light: #d4b07a;
+  --text: #2a2a2a;
+  --text-light: #6b7280;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+body {
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--warm-white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SELECTION ── */
+::selection { background: rgba(184,147,90,0.25); color: var(--navy); }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.5s ease, box-shadow 0.5s ease, padding 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(12, 30, 47, 0.98);
+  box-shadow: 0 1px 30px rgba(0,0,0,0.18);
+  padding: 0.7rem 2.5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.nav-logo:hover { opacity: 0.85; }
+.nav-logo span { color: var(--gold); }
+.nav-logo svg { width: 36px; height: auto; flex-shrink: 0; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a {
+  color: var(--silver);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+.nav-links a:not(.nav-contact)::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-light);
+  transition: width 0.3s ease;
+}
+.nav-links a:not(.nav-contact):hover::after { width: 100%; }
+.nav-links a:hover { color: var(--gold-light); }
+.nav-contact {
+  border: 1px solid var(--gold) !important;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2px;
+  color: var(--gold) !important;
+  transition: all 0.3s ease !important;
+}
+.nav-contact:hover { background: var(--gold) !important; color: var(--navy) !important; }
+.mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 0.5rem; }
+.mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: 0.3s; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.45;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(165deg, rgba(12,30,47,0.75) 0%, rgba(19,45,69,0.6) 40%, rgba(26,58,84,0.7) 100%);
+  z-index: 0;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80vw;
+  height: 80vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,147,90,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, var(--gold) 50%, transparent 95%);
+  opacity: 0.35;
+}
+/* Subtle noise texture for depth */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-content { max-width: 800px; position: relative; z-index: 1; }
+.hero-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  color: #fff;
+  line-height: 1.18;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero p {
+  font-size: 1.05rem;
+  color: var(--silver);
+  line-height: 1.8;
+  max-width: 620px;
+  margin: 0 auto 2.75rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+.hero-cta {
+  display: inline-block;
+  padding: 0.9rem 2.5rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.35s ease;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+.hero-cta:hover {
+  background: var(--gold);
+  color: var(--navy);
+  box-shadow: 0 4px 20px rgba(184,147,90,0.25);
+  transform: translateY(-1px);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTIONS ── */
+section { padding: 6.5rem 2rem; }
+.container { max-width: 960px; margin: 0 auto; }
+
+.section-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+.section-text {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  max-width: 720px;
+  margin-bottom: 1rem;
+}
+
+/* ── THESIS ── */
+.thesis { background: var(--warm-white); }
+.thesis-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+.pillar {
+  padding: 2rem 0;
+  border-top: 2px solid var(--gold);
+  transition: transform 0.3s ease;
+}
+.pillar:hover { transform: translateY(-3px); }
+.pillar-number {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  color: var(--navy);
+  opacity: 0.12;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+.pillar h3 {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pillar p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ── STATS ── */
+.stats {
+  background: var(--navy);
+  padding: 5rem 2rem;
+  position: relative;
+}
+.stats::before,
+.stats::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(184,147,90,0.25) 50%, transparent 95%);
+}
+.stats::before { top: 0; }
+.stats::after { bottom: 0; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+.stat-item {
+  position: relative;
+}
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -1rem;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: rgba(255,255,255,0.07);
+}
+.stat-number {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.76rem;
+  color: var(--steel);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ── PORTFOLIO ── */
+.portfolio { background: var(--warm-white); }
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.facility-card {
+  background: #fff;
+  border: 1px solid #e8e4de;
+  padding: 2rem;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+.facility-card:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+.facility-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.facility-meta {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+}
+.facility-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.facility-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.65rem;
+  background: var(--cream);
+  color: var(--navy);
+  font-weight: 500;
+  border-radius: 1px;
+}
+.facility-tag.pipeline {
+  background: rgba(184,147,90,0.15);
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── PIPELINE ── */
+.pipeline-section { background: #fff; }
+.pipeline-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.pipeline-card {
+  background: var(--warm-white);
+  border: 1px solid #e8e4de;
+  border-left: 3px solid var(--gold);
+  padding: 2rem;
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+.pipeline-card:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+  transform: translateY(-2px);
+}
+.pipeline-status {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.pipeline-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: inline-block;
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pipeline-card .facility-name { margin-bottom: 0.3rem; }
+.pipeline-card .facility-meta { margin-bottom: 0.75rem; }
+.pipeline-desc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ── SPOTLIGHT ── */
+.spotlight { background: var(--warm-white); }
+.spotlight-content {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.spotlight-main h3 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 1rem;
+}
+.spotlight-main p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.spotlight-sidebar {
+  background: var(--navy);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+.spotlight-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+}
+.spotlight-sidebar h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+.spotlight-stat {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.spotlight-stat:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.spotlight-stat-value {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: #fff;
+}
+.spotlight-stat-label {
+  font-size: 0.78rem;
+  color: var(--steel);
+  margin-top: 0.2rem;
+}
+
+/* ── LEADERSHIP ── */
+.leadership { background: #fff; }
+.leader-block {
+  margin-top: 2.5rem;
+  max-width: 680px;
+}
+.leader-name {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--navy);
+  margin-bottom: 0.25rem;
+}
+.leader-title {
+  font-size: 0.82rem;
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e8e4de;
+}
+.leader-bio {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+
+/* ── CONTACT ── */
+.contact {
+  background: var(--navy);
+  text-align: center;
+  padding: 5.5rem 2rem;
+  position: relative;
+}
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 5%, rgba(184,147,90,0.25) 50%, transparent 95%);
+}
+.contact .section-label { color: var(--gold); }
+.contact .section-title { color: #fff; }
+.contact-info {
+  margin-top: 2rem;
+  font-size: 0.95rem;
+  color: var(--steel);
+  line-height: 2.2;
+}
+.contact-info a {
+  color: var(--gold-light);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+.contact-info a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.contact-info a:hover::after { width: 100%; }
+.contact-info a:hover { color: var(--gold); }
+
+/* ── DIVIDER ── */
+.section-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+  margin: 1.5rem 0 0;
+  display: block;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.footer-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer p {
+  font-size: 0.75rem;
+  color: var(--steel);
+  opacity: 0.5;
+}
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-links a {
+  font-size: 0.75rem;
+  color: var(--steel);
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.footer-links a:hover { opacity: 0.8; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1.25rem 1.5rem; }
+  nav.scrolled { padding: 0.7rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(12,30,47,0.98);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.5rem 2rem 2rem;
+    gap: 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    animation: slideDown 0.3s ease;
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .nav-links a:not(.nav-contact)::after { display: none; }
+  .mobile-toggle { display: block; }
+  .thesis-pillars { grid-template-columns: 1fr; gap: 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  .stat-item:not(:last-child)::after { display: none; }
+  .portfolio-grid, .pipeline-cards { grid-template-columns: 1fr; }
+  .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
+  .hero { padding: 7rem 1.5rem 4.5rem; }
+  section { padding: 4.5rem 1.5rem; }
+  .footer-inner { flex-direction: column; gap: 1rem; }
+}
+
+/* ── SCROLL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="logo-bison.png" alt="Flint Hills Capital" style="width: 36px; height: auto; filter: brightness(0) invert(1);">
+    Flint Hills <span>Capital</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="#thesis">Thesis</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#spotlight">Development</a>
+    <a href="#leadership">Leadership</a>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </div>
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="hero-video" src="hero-video.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-label">Self Storage &amp; Flex Space Investment</div>
+    <h1>AI-First Real Estate Investment in Underserved Midwest Markets</h1>
+    <p>Flint Hills Capital is a self-funded, vertically integrated owner-operator, that acquires and develops self storage and flex space assets in secondary Kansas markets, deploying artificial intelligence and automation to achieve operating performance that institutional players can't replicate at this scale.</p>
+    <a href="#contact" class="hero-cta">Get in Touch</a>
+  </div>
+</section>
+
+<!-- THESIS -->
+<section class="thesis" id="thesis">
+  <div class="container">
+    <div class="section-label reveal">Investment Thesis</div>
+    <h2 class="section-title reveal">A Differentiated Approach to a Fragmented Asset Class</h2>
+    <p class="section-text reveal">Self storage in rural and secondary markets is dominated by local operators using legacy management — on-site managers, paper leases, manual billing, reactive pricing. These facilities are profitable but dramatically underperforming. We acquire them, transform operations with technology, and unlock value that the previous owner never captured.</p>
+    <p class="section-text reveal">We use AI to identify markets across the US that intersect lower storage inventory, strong underlying local economics and affordable, available land for industrial development. Technology is used throughout the build process, from civil engineering to launch of the new or expanded facility.</p>
+    <p class="section-text reveal">Our operating model eliminates on-site staffing entirely, replacing it with AI-powered customer service, automated workflows, and centralized operations. This produces expense ratios of 14–24% — roughly half the 35–60% industry norm. We use AI to track competitors, build intentional web applications that are delightful to use, and lean heavily into digital presence that dominates the market. These actions significantly improve the financial performance and revenue reaches the bottom line on every facility we touch.</p>
+
+    <div class="thesis-pillars reveal-stagger">
+      <div class="pillar reveal">
+        <div class="pillar-number">01</div>
+        <h3>Acquire Underperforming Assets</h3>
+        <p>We target Class B and C self storage facilities in Kansas markets with strong demand fundamentals and weak management. We buy from retiring owners, tired operators, and sellers who've never optimized their properties.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-number">02</div>
+        <h3>Transform Operations</h3>
+        <p>Every acquisition converts to our self-management platform — AI customer service, automated tenant lifecycle, dynamic revenue management. No on-site staff. No third-party management fees. Expense ratios drop from 35–60% to 14–24%.</p>
+      </div>
+      <div class="pillar reveal">
+        <div class="pillar-number">03</div>
+        <h3>Recycle Capital &amp; Compound</h3>
+        <p>We use SBA 504 financing to acquire and develop, then refinance stabilized assets to extract equity and fund subsequent deals. This allows us to compound growth and scale the portfolio without dilution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="track-record">
+  <div class="stats-grid reveal-stagger">
+    <div class="stat-item reveal">
+      <div class="stat-number">9</div>
+      <div class="stat-label">Facilities Acquired or Built</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">5</div>
+      <div class="stat-label">Facilities Sold</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">805</div>
+      <div class="stat-label">Units Currently Owned</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-number">3</div>
+      <div class="stat-label">Deals in Pipeline</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-label reveal">Current Portfolio</div>
+    <h2 class="section-title reveal">Four Facilities Across Kansas</h2>
+    <p class="section-text reveal">Every property operates under our centralized, no-on-site-staff management model through Midwest Storage Solutions, our operating subsidiary.</p>
+
+    <div class="portfolio-grid reveal-stagger">
+      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="facility-name">Reno County Storage</div>
+        <div class="facility-meta">Hutchinson, KS · 328 Units</div>
+        <div class="facility-tags">
+          <span class="facility-tag">Climate-Controlled</span>
+          <span class="facility-tag">Drive-Up</span>
+        </div>
+        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+      </a>
+      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="facility-name">Reno County Storage — South</div>
+        <div class="facility-meta">South Hutchinson, KS · 149 Units</div>
+        <div class="facility-tags">
+          <span class="facility-tag">Drive-Up</span>
+        </div>
+        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+      </a>
+      <a href="https://labettecountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="facility-name">Labette County Storage</div>
+        <div class="facility-meta">Parsons, KS · 244 Units</div>
+        <div class="facility-tags">
+          <span class="facility-tag">Climate-Controlled</span>
+          <span class="facility-tag">Drive-Up</span>
+        </div>
+        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">labettecountystorage.com ↗</div>
+      </a>
+      <a href="https://bourboncountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;">
+        <div class="facility-name">Bourbon County Storage</div>
+        <div class="facility-meta">Fort Scott, KS · 84 Units</div>
+        <div class="facility-tags">
+          <span class="facility-tag">Drive-Up</span>
+          <span class="facility-tag">Ground-Up Development</span>
+        </div>
+        <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">bourboncountystorage.com ↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- SPOTLIGHT -->
+<section class="spotlight" id="spotlight">
+  <div class="container">
+    <div class="section-label reveal">Development Spotlight</div>
+    <h2 class="section-title reveal">Proof of Concept</h2>
+
+    <div class="spotlight-content">
+      <div class="spotlight-main reveal">
+        <h3>Bourbon County Storage — Fort Scott, KS</h3>
+        <p>In 2025, Flint Hills Capital developed an 84-unit drive-up storage facility on a greenfield site in Fort Scott, Kansas. The facility was designed, permitted, and built under our direct oversight using local contractors and a lean project management approach.</p>
+        <p>After opening, the facility leased at a rate of nearly one unit per day — validating both the market demand thesis and the viability of new construction in secondary Kansas markets.</p>
+        <p>Bourbon County Storage also served as a proving ground for our SEO and digital presence strategy. We built a purpose-built website optimized for local search, achieving first-page rankings for key Fort Scott storage queries within months of launch — driving organic leads without paid advertising.</p>
+        <p>The property now operates at stabilized occupancy with no on-site staff, managed entirely through our centralized technology platform. This project proved that Flint Hills Capital can execute both acquisitions and ground-up development, giving us two paths to growth in every market we evaluate.</p>
+      </div>
+      <div class="spotlight-sidebar reveal">
+        <h4>Project Metrics</h4>
+        <div class="spotlight-stat">
+          <div class="spotlight-stat-value">84</div>
+          <div class="spotlight-stat-label">Units Built</div>
+        </div>
+        <div class="spotlight-stat">
+          <div class="spotlight-stat-value">2025</div>
+          <div class="spotlight-stat-label">Year Completed</div>
+        </div>
+        <div class="spotlight-stat">
+          <div class="spotlight-stat-value">~1/day</div>
+          <div class="spotlight-stat-label">Lease-Up Velocity</div>
+        </div>
+        <div class="spotlight-stat">
+          <div class="spotlight-stat-value">0</div>
+          <div class="spotlight-stat-label">On-Site Staff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="leadership" id="leadership">
+  <div class="container">
+    <div class="section-label reveal">Leadership</div>
+    <h2 class="section-title reveal">Founder &amp; Operator</h2>
+
+    <div class="leader-block reveal">
+      <div class="leader-name">Chris</div>
+      <div class="leader-title">Founder &amp; Managing Principal</div>
+      <p class="leader-bio">Chris founded Flint Hills Capital in 2020 after 25 years in technology sales, consulting and go-to-market strategy. He saw an opportunity to apply the same data-driven, technology-first approach to an industry still largely run on paper and phone calls.</p>
+      <p class="leader-bio">He built the portfolio from zero to 9 facilities, selling 5, developed the self-management operating model that powers Midwest Storage Solutions, and personally oversees every acquisition, development project, and capital transaction. He grew up near Lawrence, Kansas, and lives in Overland Park.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title">Let's Talk</h2>
+  <div class="contact-info">
+    <p>Flint Hills Capital, LLC</p>
+    <p>Overland Park, Kansas</p>
+    <p><a href="tel:6209018450">(620) 901-8450</a></p>
+    <p><a href="mailto:info@flinthills.capital">info@flinthills.capital</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <p>&copy; 2026 Flint Hills Capital, LLC. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#hero">Back to Top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Mobile menu
+const toggle = document.getElementById('mobileToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+// Close mobile menu on outside click
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('nav')) links.classList.remove('open');
+});
+
+// Scroll reveal with stagger support
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links (fallback for browsers without CSS scroll-padding)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const pos = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: pos, behavior: 'smooth' });
+    }
+  });
+});
+</script>
+</body>
+</html>
