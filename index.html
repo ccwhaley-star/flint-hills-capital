@@ -9,10 +9,17 @@
 <meta property="og:description" content="AI-first real estate investment in self storage and flex space across secondary Kansas markets.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flinthills.capital">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Flint Hills Capital — Self Storage & Flex Space Investment">
+<meta name="twitter:description" content="AI-first real estate investment in self storage and flex space across secondary Kansas markets.">
+<meta name="theme-color" content="#0c1e2f">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Flint Hills Capital, LLC">
+<link rel="canonical" href="https://flinthills.capital/">
 <link rel="icon" type="image/png" href="logo-bison.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -590,7 +597,7 @@ footer p {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .stat-item:not(:last-child)::after { display: none; }
   .portfolio-grid { grid-template-columns: 1fr; }
-  .facility-card img { width: 140px !important; height: 90px !important; }
+  .facility-card img[loading] { width: 140px !important; height: 90px !important; }
   .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
   .hero { padding: 7rem 1.5rem 4.5rem; }
   section { padding: 4.5rem 1.5rem; }
@@ -602,6 +609,7 @@ footer p {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
 }
 .reveal.visible {
   opacity: 1;
@@ -613,9 +621,60 @@ footer p {
 .reveal-stagger > .reveal:nth-child(2) { transition-delay: 0.1s; }
 .reveal-stagger > .reveal:nth-child(3) { transition-delay: 0.2s; }
 .reveal-stagger > .reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ── ACCESSIBILITY ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 101;
+  font-size: 0.85rem;
+}
+.skip-link:focus { top: 0; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Flint Hills Capital",
+  "url": "https://flinthills.capital",
+  "logo": "https://flinthills.capital/logo-bison.png",
+  "description": "Self-funded, vertically integrated owner-operator focused on self storage and flex space in secondary Kansas markets.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Overland Park",
+    "addressRegion": "KS",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "General",
+    "telephone": "+1-620-901-8450",
+    "email": "info@flinthills.capital"
+  }
+}
+</script>
 </head>
 <body>
+<a href="#thesis" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
 <nav id="nav">
@@ -637,7 +696,7 @@ footer p {
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero-video" src="hero-video.mp4" autoplay muted loop playsinline preload="auto"></video>
+  <video class="hero-video" src="hero-video.mp4" autoplay muted loop playsinline preload="metadata"></video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">Self Storage &amp; Flex Space Investment</div>
@@ -716,7 +775,7 @@ footer p {
           </div>
           <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
         </div>
-        <img src="reno-dusk.webp" alt="Reno County Storage at dusk" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
+        <img src="reno-dusk-grey.webp" alt="Reno County Storage at dusk" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
       </a>
       <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
         <div style="flex:1;">
@@ -728,7 +787,7 @@ footer p {
           </div>
           <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
         </div>
-        <img src="s-hutch.webp" alt="Reno County Storage South" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
+        <img src="s-hutch-grey.webp" alt="Reno County Storage South" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
       </a>
       <a href="https://labettecountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
         <div style="flex:1;">
@@ -740,7 +799,7 @@ footer p {
           </div>
           <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">labettecountystorage.com ↗</div>
         </div>
-        <img src="labette-drone.jpg" alt="Labette County Storage aerial view" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
+        <img src="labette-drone.webp" alt="Labette County Storage aerial view" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
       </a>
       <a href="https://bourboncountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
         <div style="flex:1;">
@@ -752,7 +811,7 @@ footer p {
           </div>
           <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">bourboncountystorage.com ↗</div>
         </div>
-        <img src="bourbon-unit.webp" alt="Bourbon County Storage unit" style="width:180px;height:120px;object-fit:cover;filter:grayscale(100%);border-radius:4px;flex-shrink:0;">
+        <img src="bourbon-unit-grey.webp" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
       </a>
     </div>
   </div>
@@ -806,7 +865,13 @@ footer p {
       <div class="leader-name">Chris Whaley</div>
       <div class="leader-title">Founder &amp; Managing Principal</div>
       <p class="leader-bio">Chris founded Flint Hills Capital in 2020 after 25 years in technology sales, consulting and go-to-market strategy. He saw an opportunity to apply the same data-driven, technology-first approach to an industry still largely run on paper and phone calls.</p>
-      <p class="leader-bio">He built the portfolio from zero to 9 facilities, selling 5, developed the self-management operating model that powers Midwest Storage Solutions, and personally oversees every acquisition, development project, and capital transaction. He grew up near Lawrence, Kansas, and lives in Overland Park.</p>
+      <p class="leader-bio">He was raised in Lawrence, Kansas, and is a sixth-generation Kansan with over 20 years of experience in real estate and more than 50 successful transactions. Chris attended the University of Maryland, and is a US Marine veteran.</p>
+    </div>
+
+    <div class="leader-block reveal" style="margin-top:3rem;">
+      <div class="leader-name">Mona Whaley</div>
+      <div class="leader-title">Co-Founder</div>
+      <p class="leader-bio">Mona Whaley is the co-founder of Flint Hills Capital and leads Midwest Storage Solutions. She has over 20 years of real estate operations and project experience spanning many different real estate asset classes. Mona has a Bachelor's Degree with an Art History focus from the University of Washington and an Interior Design Associate's Degree from the New York School of Interior Design.</p>
     </div>
   </div>
 </section>
