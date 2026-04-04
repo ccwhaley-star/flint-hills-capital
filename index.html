@@ -9,9 +9,13 @@
 <meta property="og:description" content="AI-first real estate investment in self storage and flex space across secondary and tertiary Midwest markets.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flinthills.capital">
+<meta property="og:image" content="https://flinthills.capital/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flint Hills Capital — Self Storage & Flex Space Investment">
 <meta name="twitter:description" content="AI-first real estate investment in self storage and flex space across secondary and tertiary Midwest markets.">
+<meta name="twitter:image" content="https://flinthills.capital/og-image.jpg">
 <meta name="theme-color" content="#0c1e2f">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Flint Hills Capital, LLC">
@@ -597,7 +601,8 @@ footer p {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .stat-item:not(:last-child)::after { display: none; }
   .portfolio-grid { grid-template-columns: 1fr; }
-  .facility-card img[loading] { width: 140px !important; height: 90px !important; }
+  .facility-card[style*="flex"] { flex-direction: column !important; align-items: flex-start !important; }
+  .facility-card img[loading] { width: 100% !important; height: 160px !important; order: -1; border-radius: 4px !important; }
   .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
   .hero { padding: 7rem 1.5rem 4.5rem; }
   section { padding: 4.5rem 1.5rem; }
@@ -728,7 +733,7 @@ a:focus-visible, button:focus-visible {
       <div class="pillar reveal">
         <div class="pillar-number">03</div>
         <h3>Recycle Capital &amp; Compound</h3>
-        <p>We use SBA 504 financing to acquire and develop, then refinance stabilized assets to extract equity and fund subsequent deals. This allows us to compound growth and scale the portfolio without dilution.</p>
+        <p>We use SBA 7(a) and 504 financing to acquire and develop, then refinance stabilized assets to extract equity and fund subsequent deals. This allows us to compound growth and scale the portfolio without dilution.</p>
       </div>
     </div>
   </div>
@@ -761,7 +766,7 @@ a:focus-visible, button:focus-visible {
   <div class="container">
     <div class="section-label reveal">Current Portfolio</div>
     <h2 class="section-title reveal">Four Facilities Across the Midwest</h2>
-    <p class="section-text reveal">Every property operates under our centralized, no-on-site-staff management model through Midwest Storage Solutions, our operating subsidiary.</p>
+    <p class="section-text reveal">Every property operates under our centralized, no-on-site-staff management model through <a href="https://midweststorage.solutions" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);">Midwest Storage Solutions</a>, our operating subsidiary.</p>
 
     <div class="portfolio-grid reveal-stagger">
       <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
@@ -829,7 +834,6 @@ a:focus-visible, button:focus-visible {
         <p>In 2025, Flint Hills Capital developed an 84-unit drive-up storage facility on a greenfield site in Fort Scott, KS. The facility was designed, permitted, and built under our direct oversight using local contractors and a lean project management approach.</p>
         <p>After opening, the facility leased at a rate of nearly one unit per day — validating both the market demand thesis and the viability of new construction in secondary and tertiary Midwest markets.</p>
         <p>Bourbon County Storage also served as a proving ground for our SEO and digital presence strategy. We built a purpose-built website optimized for local search, achieving first-page rankings for key Fort Scott storage queries within months of launch — driving organic leads without paid advertising.</p>
-        <p>The property now operates at stabilized occupancy with no on-site staff, managed entirely through our centralized technology platform. This project proved that Flint Hills Capital can execute both acquisitions and ground-up development, giving us two paths to growth in every market we evaluate.</p>
       </div>
       <div class="spotlight-sidebar reveal">
         <h4>Project Metrics</h4>
@@ -875,7 +879,6 @@ a:focus-visible, button:focus-visible {
   <h2 class="section-title">Let's Talk</h2>
   <div class="contact-info">
     <p>Flint Hills Capital, LLC</p>
-    <p>Overland Park, Kansas</p>
     <p><a href="tel:6209018450">(620) 901-8450</a></p>
     <p><a href="mailto:info@flinthills.capital">info@flinthills.capital</a></p>
   </div>
