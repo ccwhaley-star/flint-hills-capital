@@ -1,1 +1,10 @@
+# Dev-only preview server (not needed in production)
 node_modules/
+package.json
+package-lock.json
+server.js
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini
