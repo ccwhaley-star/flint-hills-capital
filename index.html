@@ -392,6 +392,73 @@ section { padding: 4.5rem 2rem; }
   font-size: 0.8rem;
   letter-spacing: 0.05em;
 }
+
+/* Past Exits subsection */
+.portfolio-subheading {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  color: var(--navy);
+  margin: 4rem 0 1.25rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid #e8e4de;
+  letter-spacing: 0.01em;
+}
+.exits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.exit-card {
+  background: #fbfaf7;
+  border: 1px solid #ece8e1;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+.exit-card:hover { border-color: var(--gold); background: #fff; }
+.exit-card-body { flex: 1; min-width: 0; padding-right: 3.5rem; }
+.exit-card img {
+  width: 140px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  filter: grayscale(0.35);
+}
+.exit-card .facility-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+.exit-card .facility-meta {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+}
+.exit-card .facility-tags { gap: 0.4rem; }
+.exit-card .facility-tag {
+  font-size: 0.62rem;
+  background: transparent;
+  border: 1px solid #d9d2c6;
+  color: var(--text-light);
+}
+.exit-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--gold);
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--gold);
+  border-radius: 1px;
+  text-transform: uppercase;
+}
 .facility-name {
   font-family: var(--serif);
   font-size: 1.2rem;
@@ -628,6 +695,10 @@ footer p {
   .portfolio-grid { grid-template-columns: 1fr; }
   .facility-card { flex-direction: column; align-items: flex-start; }
   .facility-card img { width: 100%; height: 160px; order: -1; }
+  .exits-grid { grid-template-columns: 1fr; }
+  .exit-card { flex-direction: column; align-items: flex-start; }
+  .exit-card img { width: 100%; height: 140px; order: -1; }
+  .exit-card-body { padding-right: 0; }
   .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
   .hero { padding: 7rem 1.5rem 4.5rem; }
   .hero-label { letter-spacing: 0.15em; }
@@ -845,6 +916,22 @@ a:focus-visible, button:focus-visible {
         </div>
         <img src="bourbon-unit-grey.webp" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120">
       </a>
+    </div>
+
+    <h3 class="portfolio-subheading reveal">Past Exits</h3>
+    <div class="exits-grid reveal-stagger">
+      <div class="exit-card reveal">
+        <span class="exit-badge">Sold</span>
+        <div class="exit-card-body">
+          <div class="facility-name">Allen County Storage</div>
+          <div class="facility-meta">Iola, KS · 71 Units</div>
+          <div class="facility-tags">
+            <span class="facility-tag">Climate-Controlled</span>
+            <span class="facility-tag">Expansion</span>
+          </div>
+        </div>
+        <img src="allen-county-interior.jpg" alt="Allen County Storage interior" loading="lazy" width="140" height="100">
+      </div>
     </div>
   </div>
 </section>
