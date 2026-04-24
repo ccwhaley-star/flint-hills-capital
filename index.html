@@ -89,7 +89,7 @@ nav.scrolled {
 }
 .nav-logo:hover { opacity: 0.85; }
 .nav-logo span { color: var(--gold); }
-.nav-logo img { width: 36px; height: auto; flex-shrink: 0; }
+.nav-logo img { width: 36px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
   color: var(--silver);
@@ -112,15 +112,15 @@ nav.scrolled {
   transition: width 0.3s ease;
 }
 .nav-links a:not(.nav-contact):hover::after { width: 100%; }
-.nav-links a:hover { color: var(--gold-light); }
-.nav-contact {
-  border: 1px solid var(--gold) !important;
+.nav-links a:not(.nav-contact):hover { color: var(--gold-light); }
+.nav-links a.nav-contact {
+  border: 1px solid var(--gold);
   padding: 0.5rem 1.25rem;
   border-radius: 2px;
-  color: var(--gold) !important;
-  transition: all 0.3s ease !important;
+  color: var(--gold);
+  transition: background 0.3s ease, color 0.3s ease;
 }
-.nav-contact:hover { background: var(--gold) !important; color: var(--navy) !important; }
+.nav-links a.nav-contact:hover { background: var(--gold); color: var(--navy); }
 .mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 0.5rem; }
 .mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: 0.3s; }
 
@@ -194,9 +194,9 @@ nav.scrolled {
 }
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   color: #fff;
-  line-height: 1.18;
+  line-height: 1.15;
   margin-bottom: 1.75rem;
   opacity: 0;
   animation: fadeUp 0.8s 0.4s forwards;
@@ -282,7 +282,7 @@ section { padding: 4.5rem 2rem; }
   font-family: var(--serif);
   font-size: 2.5rem;
   color: var(--navy);
-  opacity: 0.12;
+  opacity: 0.16;
   margin-bottom: 0.75rem;
   line-height: 1;
 }
@@ -366,12 +366,31 @@ section { padding: 4.5rem 2rem; }
   background: #fff;
   border: 1px solid #e8e4de;
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  text-decoration: none;
+  color: inherit;
   transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
 }
 .facility-card:hover {
   box-shadow: 0 8px 32px rgba(0,0,0,0.06);
   border-color: var(--gold);
   transform: translateY(-2px);
+}
+.facility-card-body { flex: 1; min-width: 0; }
+.facility-card img {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.facility-link {
+  margin-top: 0.75rem;
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
 }
 .facility-name {
   font-family: var(--serif);
@@ -528,6 +547,7 @@ section { padding: 4.5rem 2rem; }
 }
 .contact-info a:hover::after { width: 100%; }
 .contact-info a:hover { color: var(--gold); }
+.contact-cta { margin-top: 2.5rem; opacity: 1; animation: none; }
 
 /* ── DIVIDER ── */
 .section-divider {
@@ -571,6 +591,11 @@ footer p {
 }
 .footer-links a:hover { opacity: 0.8; }
 
+/* ── TABLET (769–960px) ── */
+@media (min-width: 769px) and (max-width: 960px) {
+  .thesis-pillars { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+}
+
 /* ── MOBILE ── */
 @media (max-width: 768px) {
   nav { padding: 1.25rem 1.5rem; }
@@ -601,10 +626,12 @@ footer p {
   .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
   .stat-item:not(:last-child)::after { display: none; }
   .portfolio-grid { grid-template-columns: 1fr; }
-  .facility-card[style*="flex"] { flex-direction: column !important; align-items: flex-start !important; }
-  .facility-card img[loading] { width: 100% !important; height: 160px !important; order: -1; border-radius: 4px !important; }
+  .facility-card { flex-direction: column; align-items: flex-start; }
+  .facility-card img { width: 100%; height: 160px; order: -1; }
   .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
   .hero { padding: 7rem 1.5rem 4.5rem; }
+  .hero-label { letter-spacing: 0.15em; }
+  .hero-video { display: none; }
   section { padding: 4.5rem 1.5rem; }
   .footer-inner { flex-direction: column; gap: 1rem; }
 }
@@ -679,12 +706,12 @@ a:focus-visible, button:focus-visible {
 </script>
 </head>
 <body>
-<a href="#thesis" class="skip-link">Skip to main content</a>
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="logo-bison.png" alt="Flint Hills Capital" style="width: 36px; height: auto; filter: brightness(0) invert(1);">
+    <img src="logo-bison.png" alt="Flint Hills Capital">
     Flint Hills <span>Capital</span>
   </a>
   <div class="nav-links" id="navLinks">
@@ -699,6 +726,7 @@ a:focus-visible, button:focus-visible {
   </button>
 </nav>
 
+<main id="main">
 <!-- HERO -->
 <section class="hero" id="hero">
   <video class="hero-video" src="hero-video.mp4" autoplay muted loop playsinline preload="metadata"></video>
@@ -706,7 +734,7 @@ a:focus-visible, button:focus-visible {
   <div class="hero-content">
     <div class="hero-label">Industrial, Storage and Flex Investment</div>
     <h1>AI-First Real Estate Investment in Underserved Midwest Markets</h1>
-    <p>Flint Hills Capital is a self-funded, vertically integrated owner-operator, that acquires and develops industrial, storage, and flex space assets in secondary and tertiary Midwest markets, deploying artificial intelligence and automation to achieve operating performance that institutional players can't replicate at this scale.</p>
+    <p>Flint Hills Capital is a self-funded, vertically integrated owner-operator that acquires and develops industrial, storage, and flex space assets in secondary and tertiary Midwest markets, deploying artificial intelligence and automation to achieve operating performance that institutional players can't replicate at this scale.</p>
     <a href="#contact" class="hero-cta">Get in Touch</a>
   </div>
 </section>
@@ -766,56 +794,56 @@ a:focus-visible, button:focus-visible {
   <div class="container">
     <div class="section-label reveal">Current Portfolio</div>
     <h2 class="section-title reveal">Four Facilities Across the Midwest</h2>
-    <p class="section-text reveal">Every property operates under our centralized, technology-first management model through <a href="https://midweststorage.solutions" target="_blank" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);">Midwest Storage Solutions</a>, our operating subsidiary.</p>
+    <p class="section-text reveal">Every property operates under our centralized, technology-first management model through <a href="https://midweststorage.solutions" target="_blank" rel="noopener noreferrer" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold);">Midwest Storage Solutions</a>, our operating subsidiary.</p>
 
     <div class="portfolio-grid reveal-stagger">
-      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
-        <div style="flex:1;">
+      <a href="https://www.renocountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
+        <div class="facility-card-body">
           <div class="facility-name">Reno County Storage</div>
           <div class="facility-meta">Hutchinson, KS · 328 Units</div>
           <div class="facility-tags">
             <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Office Conversion</span>
           </div>
-          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+          <div class="facility-link">renocountystorage.com ↗</div>
         </div>
-        <img src="reno-dusk-grey.webp" alt="Reno County Storage at dusk" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
+        <img src="reno-dusk-grey.webp" alt="Reno County Storage at dusk" loading="lazy" width="180" height="120">
       </a>
-      <a href="https://www.renocountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
-        <div style="flex:1;">
+      <a href="https://www.renocountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
+        <div class="facility-card-body">
           <div class="facility-name">Reno County Storage — South</div>
           <div class="facility-meta">South Hutchinson, KS · 149 Units</div>
           <div class="facility-tags">
             <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Flex</span>
           </div>
-          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">renocountystorage.com ↗</div>
+          <div class="facility-link">renocountystorage.com ↗</div>
         </div>
-        <img src="s-hutch-grey.webp" alt="Reno County Storage South" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
+        <img src="s-hutch-grey.webp" alt="Reno County Storage South" loading="lazy" width="180" height="120">
       </a>
-      <a href="https://labettecountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
-        <div style="flex:1;">
+      <a href="https://labettecountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
+        <div class="facility-card-body">
           <div class="facility-name">Labette County Storage</div>
           <div class="facility-meta">Parsons, KS · 244 Units</div>
           <div class="facility-tags">
             <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Expansion</span>
           </div>
-          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">labettecountystorage.com ↗</div>
+          <div class="facility-link">labettecountystorage.com ↗</div>
         </div>
-        <img src="labette-drone.webp" alt="Labette County Storage aerial view" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
+        <img src="labette-drone.webp" alt="Labette County Storage aerial view" loading="lazy" width="180" height="120">
       </a>
-      <a href="https://bourboncountystorage.com" target="_blank" class="facility-card reveal" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:1.25rem;">
-        <div style="flex:1;">
+      <a href="https://bourboncountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
+        <div class="facility-card-body">
           <div class="facility-name">Bourbon County Storage</div>
           <div class="facility-meta">Fort Scott, KS · 84 Units</div>
           <div class="facility-tags">
             <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Ground-Up Development</span>
           </div>
-          <div class="facility-link" style="margin-top:0.75rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.05em;">bourboncountystorage.com ↗</div>
+          <div class="facility-link">bourboncountystorage.com ↗</div>
         </div>
-        <img src="bourbon-unit-grey.webp" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120" style="width:180px;height:120px;object-fit:cover;border-radius:4px;flex-shrink:0;">
+        <img src="bourbon-unit-grey.webp" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120">
       </a>
     </div>
   </div>
@@ -875,15 +903,17 @@ a:focus-visible, button:focus-visible {
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <div class="section-label">Get in Touch</div>
+  <div class="section-label">Contact</div>
   <h2 class="section-title">Let's Talk</h2>
   <div class="contact-info">
     <p>Flint Hills Capital, LLC</p>
     <p><a href="tel:6209018450">(620) 901-8450</a></p>
     <p><a href="mailto:info@flinthills.capital">info@flinthills.capital</a></p>
   </div>
-  <a href="mailto:info@flinthills.capital" class="hero-cta" style="margin-top:2.5rem;opacity:1;animation:none;">Send Us a Message</a>
+  <a href="mailto:info@flinthills.capital" class="hero-cta contact-cta">Send a Message</a>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
