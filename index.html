@@ -795,7 +795,7 @@ a:focus-visible, button:focus-visible {
       <div class="stat-label">Facilities Sold</div>
     </div>
     <div class="stat-item reveal">
-      <div class="stat-number" data-count="805">0</div>
+      <div class="stat-number" data-count="805" data-duration="2400">0</div>
       <div class="stat-label">Units Currently Owned</div>
     </div>
     <div class="stat-item reveal">
@@ -1016,7 +1016,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const animateCount = (el) => {
   const target = parseInt(el.dataset.count, 10);
   if (prefersReducedMotion) { el.textContent = target.toLocaleString(); return; }
-  const duration = 1400;
+  const duration = parseInt(el.dataset.duration, 10) || 1400;
   const startTime = performance.now();
   const tick = (now) => {
     const progress = Math.min((now - startTime) / duration, 1);
