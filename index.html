@@ -126,6 +126,87 @@ nav.scrolled {
   transition: background 0.3s ease, color 0.3s ease;
 }
 .nav-links a.nav-contact:hover { background: var(--gold); color: var(--navy); }
+
+/* Nav dropdown */
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger {
+  background: none;
+  border: none;
+  color: var(--silver);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  transition: color var(--t-fast);
+  position: relative;
+}
+.nav-dropdown-trigger::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold-light);
+  transition: width var(--t-fast) ease;
+}
+.nav-dropdown:hover .nav-dropdown-trigger,
+.nav-dropdown.is-open .nav-dropdown-trigger { color: var(--gold-light); }
+.nav-dropdown:hover .nav-dropdown-trigger::after,
+.nav-dropdown.is-open .nav-dropdown-trigger::after { width: 100%; }
+.nav-chevron { width: 10px; height: 6px; transition: transform var(--t-fast); }
+.nav-dropdown:hover .nav-chevron,
+.nav-dropdown.is-open .nav-chevron { transform: rotate(180deg); }
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  min-width: 230px;
+  background: rgba(12, 30, 47, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(184,147,90,0.18);
+  border-radius: 2px;
+  padding: 0.6rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity var(--t-fast), transform var(--t-fast), visibility var(--t-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 90;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.25);
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown.is-open .nav-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dropdown-menu a {
+  display: block;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--silver);
+  border-radius: 2px;
+  transition: background var(--t-fast), color var(--t-fast);
+  text-decoration: none;
+}
+.nav-dropdown-menu a::after { display: none !important; }
+.nav-dropdown-menu a:hover {
+  background: rgba(184,147,90,0.08);
+  color: var(--gold-light);
+}
+
 .mobile-toggle { display: none; cursor: pointer; background: none; border: none; padding: 0.5rem; }
 .mobile-toggle span { display: block; width: 22px; height: 2px; background: #fff; margin: 5px 0; transition: 0.3s; }
 
@@ -499,7 +580,8 @@ section { padding: 4.5rem 2rem; }
   font-weight: 500;
   margin-bottom: 0.9rem;
 }
-.experience-ai-eyebrow::before {
+.experience-ai-eyebrow::before,
+.experience-ai-eyebrow::after {
   content: '';
   width: 24px;
   height: 1px;
@@ -681,7 +763,7 @@ section { padding: 4.5rem 2rem; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  align-items: start;
+  align-items: center;
 }
 .spotlight-main h3 {
   font-family: var(--serif);
@@ -819,10 +901,12 @@ footer p {
   .thesis-pillars { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 }
 
-/* ── MOBILE ── */
+/* ── MOBILE (≤ 768px) ── */
 @media (max-width: 768px) {
-  nav { padding: 1.25rem 1.5rem; }
-  nav.scrolled { padding: 0.7rem 1.5rem; }
+  nav { padding: 1rem 1.25rem; }
+  nav.scrolled { padding: 0.65rem 1.25rem; }
+  .nav-logo { font-size: 1rem; }
+  .nav-logo img { width: 30px; }
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
@@ -834,10 +918,22 @@ footer p {
     background: rgba(12,30,47,0.98);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 1.5rem 2rem 2rem;
-    gap: 1.25rem;
+    padding: 0.5rem 1.25rem 1.25rem;
+    gap: 0;
     border-bottom: 1px solid rgba(255,255,255,0.08);
     animation: slideDown 0.3s ease;
+  }
+  .nav-links.open > a,
+  .nav-links.open .nav-dropdown-menu > a {
+    padding: 0.95rem 0.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.85rem;
+  }
+  .nav-links.open .nav-contact {
+    margin-top: 0.85rem;
+    padding: 0.85rem 1.25rem;
+    text-align: center;
+    border-bottom: 1px solid var(--gold);
   }
   @keyframes slideDown {
     from { opacity: 0; transform: translateY(-8px); }
@@ -845,26 +941,94 @@ footer p {
   }
   .nav-links a:not(.nav-contact)::after { display: none; }
   .mobile-toggle { display: block; }
-  .thesis-pillars { grid-template-columns: 1fr; gap: 1.5rem; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .stat-item:not(:last-child)::after { display: none; }
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .facility-card { flex-direction: column; align-items: flex-start; }
-  .facility-card img { width: 100%; height: 160px; order: -1; }
-  .spotlight-content { grid-template-columns: 1fr; gap: 2rem; }
-  .spotlight-metrics-band { margin: 3rem -1.5rem -4.5rem; padding: 2.5rem 1.5rem; }
-  .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-  .spotlight-metric-item:not(:last-child)::after { display: none; }
-  .experience-header { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2.5rem; }
-  .experience-visual { max-width: 340px; }
-  .experience-ai-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.25rem; }
-  .experience-metrics { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; }
-  .experience-metric:not(:last-child)::after { display: none; }
-  .hero { padding: 7rem 1.5rem 4.5rem; }
-  .hero-label { letter-spacing: 0.15em; }
+  /* Flatten the Insights dropdown into the mobile menu flow */
+  .nav-dropdown-trigger { display: none; }
+  .nav-dropdown { width: 100%; }
+  .nav-dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    padding: 0;
+    gap: 0;
+    box-shadow: none;
+    min-width: 0;
+  }
+  .nav-dropdown-menu a {
+    color: var(--silver);
+    background: none;
+  }
+  .nav-dropdown-menu a:hover { background: none; color: var(--gold-light); }
+
+  /* Sections */
+  section { padding: 4rem 1.25rem; }
+
+  /* Hero */
+  .hero { padding: 6.5rem 1.25rem 4rem; min-height: clamp(560px, 88vh, 760px); }
+  .hero h1 { font-size: clamp(1.95rem, 7vw, 2.5rem); line-height: 1.18; }
+  .hero p { font-size: 1rem; line-height: 1.7; margin-bottom: 2.25rem; }
+  .hero-label { letter-spacing: 0.15em; font-size: 0.7rem; }
+  .hero-cta { padding: 0.85rem 2rem; font-size: 0.8rem; }
   .hero-video { display: none; }
-  section { padding: 4.5rem 1.5rem; }
-  .footer-inner { flex-direction: column; gap: 1rem; }
+
+  /* Thesis */
+  .thesis-pillars { grid-template-columns: 1fr; gap: 1.25rem; margin-top: 2rem; }
+  .pillar { padding: 1.5rem 0; }
+  .pillar-number { font-size: 1.85rem; }
+
+  /* Stats */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .stat-item:not(:last-child)::after { display: none; }
+
+  /* Portfolio */
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .facility-card { flex-direction: column; align-items: flex-start; padding: 1.5rem; min-height: 0; }
+  .facility-card img { width: 100%; height: 180px; order: -1; }
+
+  /* Experience */
+  .experience { padding-top: 4rem; padding-bottom: 4rem; }
+  .experience-header { grid-template-columns: 1fr; gap: 1.75rem; margin-bottom: 2.5rem; }
+  .experience-header-text { text-align: left; }
+  .experience-visual { max-width: 440px; }
+  .experience-ai-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.25rem; }
+  .experience-metrics { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; margin-top: 3rem; padding-top: 2rem; }
+  .experience-metric:not(:last-child)::after { display: none; }
+
+  /* Spotlight */
+  .spotlight-content { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2rem; }
+  .spotlight-image img { aspect-ratio: 16 / 10; }
+  .spotlight-metrics-band { margin: 2.5rem -1.25rem -4rem; padding: 2.25rem 1.25rem; }
+  .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
+  .spotlight-metric-item:not(:last-child)::after { display: none; }
+
+  /* Contact */
+  .contact { padding: 3.5rem 1.25rem; }
+  .contact-info { font-size: 0.9rem; line-height: 2; }
+
+  /* Footer */
+  footer { padding: 2rem 1.25rem; }
+  .footer-inner { flex-direction: column; gap: 0.85rem; text-align: center; }
+  .footer-links { gap: 1.25rem; }
+}
+
+/* ── SMALL PHONES (≤ 480px) — tighter ── */
+@media (max-width: 480px) {
+  section { padding: 3.5rem 1.15rem; }
+  .hero { padding: 6rem 1.15rem 3.5rem; }
+  .hero h1 { font-size: 1.9rem; }
+  .experience-ai-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 0.5rem; }
+  .stat-number { font-size: 1.8rem; }
+  .experience-metrics,
+  .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0.5rem; }
+  .experience-metric-value,
+  .spotlight-metric-value { font-size: 1.7rem; }
+  .nav-logo { font-size: 0.95rem; }
+  .nav-logo img { width: 26px; }
 }
 
 /* ── SCROLL ANIMATIONS ── */
@@ -948,9 +1112,17 @@ a:focus-visible, button:focus-visible {
   <div class="nav-links" id="navLinks">
     <a href="#thesis">Thesis</a>
     <a href="#portfolio">Portfolio</a>
-    <a href="#experience">Experience</a>
-    <a href="#spotlight">Development</a>
-    <a href="#leadership">Leadership</a>
+    <div class="nav-dropdown" id="navDropdown">
+      <button class="nav-dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+        Insights
+        <svg class="nav-chevron" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="nav-dropdown-menu" role="menu">
+        <a href="#experience" role="menuitem">Customer Experience</a>
+        <a href="#spotlight" role="menuitem">Development</a>
+        <a href="#leadership" role="menuitem">Leadership</a>
+      </div>
+    </div>
     <a href="#contact" class="nav-contact">Contact</a>
   </div>
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
@@ -1141,7 +1313,7 @@ a:focus-visible, button:focus-visible {
       </div>
 
       <div class="experience-visual reveal" aria-hidden="true">
-        <svg viewBox="0 0 600 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mini hero preview of a Flint Hills Capital storage website">
+        <svg viewBox="0 0 600 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The same Reno County Storage site rendered across desktop, tablet, and mobile">
           <defs>
             <linearGradient id="heroOverlay" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#0c1e2f" stop-opacity="0.20"/>
@@ -1152,18 +1324,21 @@ a:focus-visible, button:focus-visible {
               <stop offset="0" stop-color="#1a3a54"/>
               <stop offset="1" stop-color="#0c1e2f"/>
             </linearGradient>
-            <radialGradient id="centerGlow" cx="0.5" cy="0.55" r="0.55">
+            <radialGradient id="centerGlow" cx="0.5" cy="0.5" r="0.55">
               <stop offset="0" stop-color="#b8935a" stop-opacity="0.22"/>
               <stop offset="1" stop-color="#b8935a" stop-opacity="0"/>
             </radialGradient>
             <pattern id="isoGrid" width="48" height="48" patternUnits="userSpaceOnUse">
               <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#b8935a" stroke-opacity="0.06" stroke-width="1"/>
             </pattern>
-            <clipPath id="heroClip">
-              <rect x="46" y="150" width="508" height="288" rx="10"/>
+            <clipPath id="heroClipDesktop">
+              <rect x="116" y="124" width="368" height="216" rx="8"/>
             </clipPath>
-            <clipPath id="frameClip">
-              <rect x="40" y="110" width="520" height="332" rx="14"/>
+            <clipPath id="heroClipTablet">
+              <rect x="436" y="222" width="118" height="80" rx="6"/>
+            </clipPath>
+            <clipPath id="heroClipMobile">
+              <rect x="38" y="270" width="74" height="58" rx="6"/>
             </clipPath>
           </defs>
 
@@ -1171,70 +1346,119 @@ a:focus-visible, button:focus-visible {
           <rect width="600" height="540" fill="url(#isoGrid)"/>
           <rect x="40" y="60" width="520" height="440" fill="url(#centerGlow)"/>
 
-          <!-- Mini hero "browser" frame with subtle tilt -->
-          <g transform="rotate(-3 300 280)">
+          <!-- DESKTOP (back, center) -->
+          <g>
             <!-- Depth shadow -->
-            <rect x="40" y="110" width="520" height="332" rx="14" fill="#06121e" opacity="0.55" transform="translate(8 12)"/>
-
+            <rect x="110" y="100" width="380" height="240" rx="10" fill="#06121e" opacity="0.55" transform="translate(7 10)"/>
             <!-- Frame -->
-            <rect x="40" y="110" width="520" height="332" rx="14" fill="url(#frameBezel)" stroke="#b8935a" stroke-opacity="0.45" stroke-width="1"/>
-
-            <!-- Top chrome bar -->
-            <g clip-path="url(#frameClip)">
-              <rect x="40" y="110" width="520" height="36" fill="#0a1825"/>
+            <rect x="110" y="100" width="380" height="240" rx="10" fill="url(#frameBezel)" stroke="#b8935a" stroke-opacity="0.45" stroke-width="1"/>
+            <!-- Chrome bar -->
+            <rect x="110" y="100" width="380" height="24" fill="#0a1825"/>
+            <line x1="110" y1="124" x2="490" y2="124" stroke="#b8935a" stroke-opacity="0.18"/>
+            <circle cx="124" cy="112" r="3.5" fill="#1a3a54"/>
+            <circle cx="136" cy="112" r="3.5" fill="#1a3a54"/>
+            <circle cx="148" cy="112" r="3.5" fill="#1a3a54"/>
+            <rect x="232" y="106" width="136" height="14" rx="7" fill="#06121e" stroke="#1a3a54" stroke-width="0.5"/>
+            <text x="300" y="115" text-anchor="middle" fill="#8fa3b8" font-size="7" font-family="DM Sans, sans-serif">renocountystorage.com</text>
+            <!-- Hero image -->
+            <g clip-path="url(#heroClipDesktop)">
+              <image href="reno-dusk.webp" x="116" y="124" width="368" height="216" preserveAspectRatio="xMidYMid slice"/>
+              <rect x="116" y="124" width="368" height="216" fill="url(#heroOverlay)"/>
             </g>
-            <line x1="40" y1="146" x2="560" y2="146" stroke="#b8935a" stroke-opacity="0.18"/>
-            <circle cx="64" cy="128" r="5" fill="#1a3a54"/>
-            <circle cx="82" cy="128" r="5" fill="#1a3a54"/>
-            <circle cx="100" cy="128" r="5" fill="#1a3a54"/>
-            <rect x="200" y="118" width="200" height="20" rx="10" fill="#06121e" stroke="#1a3a54" stroke-width="0.5"/>
-            <text x="300" y="131" text-anchor="middle" fill="#8fa3b8" font-size="9" font-family="DM Sans, sans-serif" letter-spacing="0.3">renocountystorage.com</text>
-            <!-- Right nav hint -->
-            <line x1="468" y1="125" x2="484" y2="125" stroke="#8fa3b8" stroke-opacity="0.5" stroke-width="1"/>
-            <line x1="468" y1="130" x2="484" y2="130" stroke="#8fa3b8" stroke-opacity="0.5" stroke-width="1"/>
-            <line x1="468" y1="135" x2="484" y2="135" stroke="#8fa3b8" stroke-opacity="0.5" stroke-width="1"/>
-
-            <!-- Hero image area -->
-            <g clip-path="url(#heroClip)">
-              <image href="reno-dusk.webp" x="46" y="150" width="508" height="288" preserveAspectRatio="xMidYMid slice"/>
-              <rect x="46" y="150" width="508" height="288" fill="url(#heroOverlay)"/>
-            </g>
-
-            <!-- Brand mark + name (top-left inside hero) -->
-            <circle cx="76" cy="178" r="12" fill="#b8935a"/>
-            <text x="76" y="182" text-anchor="middle" fill="#0c1e2f" font-size="11" font-weight="700" font-family="DM Serif Display, serif">R</text>
-            <text x="96" y="182" fill="#fff" font-size="11" font-family="DM Sans, sans-serif" font-weight="600">Reno County Storage</text>
-
-            <!-- Live availability chip (top-right inside hero) -->
-            <g>
-              <rect x="402" y="167" width="142" height="24" rx="12" fill="#0a1825" fill-opacity="0.85" stroke="#5ab87a" stroke-opacity="0.55"/>
-              <circle cx="418" cy="179" r="3.5" fill="#5ab87a">
-                <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
-              </circle>
-              <text x="430" y="183" fill="#c2d0dc" font-size="8.5" font-family="DM Sans, sans-serif" font-weight="500" letter-spacing="0.3">23 units available now</text>
-            </g>
-
+            <!-- Brand -->
+            <circle cx="138" cy="146" r="9" fill="#b8935a"/>
+            <text x="138" y="149.5" text-anchor="middle" fill="#0c1e2f" font-size="9" font-weight="700" font-family="DM Serif Display, serif">R</text>
+            <text x="154" y="149" fill="#fff" font-size="9" font-family="DM Sans, sans-serif" font-weight="600">Reno County Storage</text>
+            <!-- Live chip -->
+            <rect x="358" y="138" width="118" height="20" rx="10" fill="#0a1825" fill-opacity="0.85" stroke="#5ab87a" stroke-opacity="0.55"/>
+            <circle cx="370" cy="148" r="3" fill="#5ab87a">
+              <animate attributeName="opacity" values="1;0.3;1" dur="1.6s" repeatCount="indefinite"/>
+            </circle>
+            <text x="380" y="151" fill="#c2d0dc" font-size="7" font-family="DM Sans, sans-serif" font-weight="500">23 units available now</text>
             <!-- Eyebrow -->
-            <text x="76" y="240" fill="#b8935a" font-size="9" font-family="DM Sans, sans-serif" letter-spacing="3" font-weight="600">HUTCHINSON, KS · 328 UNITS</text>
-
-            <!-- Headline (two lines, italic gold on second) -->
-            <text x="76" y="284" fill="#fff" font-size="32" font-family="DM Serif Display, serif">Storage with</text>
-            <text x="76" y="320" fill="#b8935a" font-size="32" font-family="DM Serif Display, serif" font-style="italic">no surprises.</text>
-
+            <text x="138" y="208" fill="#b8935a" font-size="7" font-family="DM Sans, sans-serif" letter-spacing="2" font-weight="600">HUTCHINSON, KS · 328 UNITS</text>
+            <!-- Headline -->
+            <text x="138" y="238" fill="#fff" font-size="22" font-family="DM Serif Display, serif">Storage with</text>
+            <text x="138" y="265" fill="#b8935a" font-size="22" font-family="DM Serif Display, serif" font-style="italic">no surprises.</text>
             <!-- Subhead -->
-            <text x="76" y="346" fill="#c2d0dc" font-size="10" font-family="DM Sans, sans-serif" opacity="0.88">Reserve online in 90 seconds. Drive in the same day.</text>
+            <text x="138" y="285" fill="#c2d0dc" font-size="8" font-family="DM Sans, sans-serif" opacity="0.88">Reserve in 90 seconds. Drive in the same day.</text>
+            <!-- CTAs -->
+            <rect x="138" y="300" width="100" height="22" rx="11" fill="#b8935a"/>
+            <text x="188" y="314" text-anchor="middle" fill="#0c1e2f" font-size="7" font-weight="700" font-family="DM Sans, sans-serif" letter-spacing="1.4">RESERVE A UNIT</text>
+            <rect x="246" y="300" width="80" height="22" rx="11" fill="none" stroke="#b8935a" stroke-opacity="0.65"/>
+            <text x="286" y="314" text-anchor="middle" fill="#b8935a" font-size="7" font-weight="600" font-family="DM Sans, sans-serif" letter-spacing="1.4">SIZE GUIDE</text>
+          </g>
 
-            <!-- CTA group -->
-            <g transform="translate(76 366)">
-              <rect x="0" y="0" width="128" height="30" rx="15" fill="#b8935a"/>
-              <text x="64" y="19" text-anchor="middle" fill="#0c1e2f" font-size="9" font-weight="700" font-family="DM Sans, sans-serif" letter-spacing="1.6">RESERVE A UNIT</text>
-              <rect x="140" y="0" width="96" height="30" rx="15" fill="none" stroke="#b8935a" stroke-opacity="0.65"/>
-              <text x="188" y="19" text-anchor="middle" fill="#b8935a" font-size="9" font-weight="600" font-family="DM Sans, sans-serif" letter-spacing="1.6">SIZE GUIDE</text>
+          <!-- TABLET (right-front) -->
+          <g>
+            <!-- Depth shadow -->
+            <rect x="430" y="200" width="130" height="200" rx="12" fill="#06121e" opacity="0.6" transform="translate(6 9)"/>
+            <!-- Frame -->
+            <rect x="430" y="200" width="130" height="200" rx="12" fill="url(#frameBezel)" stroke="#b8935a" stroke-opacity="0.45" stroke-width="1"/>
+            <!-- Screen -->
+            <rect x="435" y="205" width="120" height="190" rx="8" fill="#0c1e2f"/>
+            <!-- Status pill -->
+            <rect x="478" y="210" width="34" height="2.5" rx="1.25" fill="#8fa3b8" opacity="0.35"/>
+            <!-- Hero image -->
+            <rect x="436" y="222" width="118" height="80" rx="6" fill="#132d45"/>
+            <g clip-path="url(#heroClipTablet)">
+              <image href="reno-dusk.webp" x="436" y="222" width="118" height="80" preserveAspectRatio="xMidYMid slice"/>
+              <rect x="436" y="222" width="118" height="80" fill="url(#heroOverlay)"/>
             </g>
+            <!-- Brand in hero -->
+            <circle cx="445" cy="234" r="4" fill="#b8935a"/>
+            <text x="445" y="236.5" text-anchor="middle" fill="#0c1e2f" font-size="4.5" font-weight="700" font-family="DM Serif Display, serif">R</text>
+            <text x="453" y="236" fill="#fff" font-size="5" font-family="DM Sans, sans-serif" font-weight="600">Reno County Storage</text>
+            <!-- Headline -->
+            <text x="445" y="280" fill="#fff" font-size="11" font-family="DM Serif Display, serif">Storage with</text>
+            <text x="445" y="295" fill="#b8935a" font-size="11" font-family="DM Serif Display, serif" font-style="italic">no surprises.</text>
+            <!-- Size cards -->
+            <rect x="440" y="320" width="110" height="22" rx="4" fill="#132d45" stroke="#b8935a" stroke-opacity="0.4"/>
+            <text x="446" y="330" fill="#f0ece4" font-size="7" font-family="DM Serif Display, serif">10 × 10</text>
+            <text x="446" y="337.5" fill="#8fa3b8" font-size="4.5" font-family="DM Sans, sans-serif">3 available</text>
+            <text x="544" y="333" text-anchor="end" fill="#b8935a" font-size="7" font-family="DM Serif Display, serif">$89/mo</text>
+            <rect x="440" y="347" width="110" height="20" rx="4" fill="#132d45" opacity="0.6"/>
+            <text x="446" y="357" fill="#f0ece4" font-size="6.5" font-family="DM Serif Display, serif" opacity="0.85">5 × 10</text>
+            <text x="544" y="359" text-anchor="end" fill="#b8935a" font-size="6" font-family="DM Sans, sans-serif" opacity="0.7">$49</text>
+            <rect x="440" y="372" width="110" height="20" rx="4" fill="#132d45" opacity="0.4"/>
+            <text x="446" y="382" fill="#f0ece4" font-size="6.5" font-family="DM Serif Display, serif" opacity="0.6">10 × 15</text>
+            <text x="544" y="384" text-anchor="end" fill="#b8935a" font-size="6" font-family="DM Sans, sans-serif" opacity="0.55">$119</text>
+          </g>
 
-            <!-- Scroll hint (bottom-right) -->
-            <text x="528" y="416" text-anchor="end" fill="#8fa3b8" font-size="7" font-family="DM Sans, sans-serif" letter-spacing="2" opacity="0.7">SCROLL</text>
-            <line x1="532" y1="422" x2="532" y2="432" stroke="#8fa3b8" stroke-width="1" opacity="0.5"/>
+          <!-- MOBILE (left-front, smallest, on top) -->
+          <g>
+            <!-- Depth shadow -->
+            <rect x="32" y="252" width="86" height="180" rx="16" fill="#06121e" opacity="0.65" transform="translate(5 9)"/>
+            <!-- Frame -->
+            <rect x="32" y="252" width="86" height="180" rx="16" fill="url(#frameBezel)" stroke="#b8935a" stroke-opacity="0.45" stroke-width="1"/>
+            <!-- Screen -->
+            <rect x="36" y="256" width="78" height="172" rx="13" fill="#0c1e2f"/>
+            <!-- Notch -->
+            <rect x="62" y="259" width="26" height="3" rx="1.5" fill="#1a3a54"/>
+            <!-- Hero image -->
+            <g clip-path="url(#heroClipMobile)">
+              <image href="reno-dusk.webp" x="38" y="270" width="74" height="58" preserveAspectRatio="xMidYMid slice"/>
+              <rect x="38" y="270" width="74" height="58" fill="url(#heroOverlay)"/>
+            </g>
+            <!-- Brand chip -->
+            <circle cx="46" cy="280" r="3.5" fill="#b8935a"/>
+            <text x="46" y="282" text-anchor="middle" fill="#0c1e2f" font-size="4" font-weight="700" font-family="DM Serif Display, serif">R</text>
+            <text x="53" y="282" fill="#fff" font-size="4" font-family="DM Sans, sans-serif" font-weight="600">Reno</text>
+            <!-- Headline in hero -->
+            <text x="44" y="310" fill="#fff" font-size="7" font-family="DM Serif Display, serif">Storage with</text>
+            <text x="44" y="320" fill="#b8935a" font-size="7" font-family="DM Serif Display, serif" font-style="italic">no surprises.</text>
+            <!-- Size card -->
+            <rect x="38" y="336" width="74" height="20" rx="4" fill="#132d45" stroke="#b8935a" stroke-opacity="0.4"/>
+            <text x="42" y="345" fill="#f0ece4" font-size="6" font-family="DM Serif Display, serif">10 × 10</text>
+            <text x="42" y="352.5" fill="#8fa3b8" font-size="4" font-family="DM Sans, sans-serif">3 avail</text>
+            <text x="108" y="348" text-anchor="end" fill="#b8935a" font-size="6" font-family="DM Serif Display, serif">$89</text>
+            <!-- CTA pill -->
+            <rect x="38" y="362" width="74" height="14" rx="7" fill="#b8935a"/>
+            <text x="75" y="371" text-anchor="middle" fill="#0c1e2f" font-size="5" font-weight="700" font-family="DM Sans, sans-serif" letter-spacing="0.8">RESERVE</text>
+            <!-- Secondary -->
+            <text x="75" y="390" text-anchor="middle" fill="#c2d0dc" font-size="4.5" font-family="DM Sans, sans-serif" opacity="0.6" letter-spacing="0.5">Size Guide</text>
+            <!-- Home indicator -->
+            <line x1="62" y1="420" x2="88" y2="420" stroke="#b8935a" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
           </g>
         </svg>
       </div>
@@ -1244,7 +1468,6 @@ a:focus-visible, button:focus-visible {
     <div class="experience-ai reveal">
       <div class="experience-ai-head">
         <div class="experience-ai-eyebrow">The AI Layer Underneath</div>
-        <h3 class="experience-ai-title">Four customer-facing systems that <em style="font-style:italic;color:var(--gold);">run themselves.</em></h3>
       </div>
       <div class="experience-ai-grid reveal-stagger">
         <div class="experience-ai-item reveal">
@@ -1259,21 +1482,21 @@ a:focus-visible, button:focus-visible {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
           </div>
           <h4>Dynamic Pricing</h4>
-          <p>Every unit price recalculates against live demand and competitor activity. The website shows what the market actually supports today — not last quarter's spreadsheet.</p>
+          <p>Every unit price recalculates against live demand and competitor activity. The website shows what the market actually supports today, not last quarter's spreadsheet.</p>
         </div>
         <div class="experience-ai-item reveal">
           <div class="experience-ai-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
           </div>
           <h4>Content Engine</h4>
-          <p>AEO and SEO-optimized posts and town-specific content ships regularly under human review. We also monitor, test, and update SEO sitewide. Day-one rankings, not month-six.</p>
+          <p>AEO and SEO-optimized content ships regularly under human review. We also monitor, test, and update SEO sitewide against the competition. Day-one rankings, not month-six.</p>
         </div>
         <div class="experience-ai-item reveal">
           <div class="experience-ai-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><polyline points="21 4 21 10 15 10"/></svg>
           </div>
           <h4>Lifecycle Automation</h4>
-          <p>Welcome flows, late-payment outreach, move-out check-ins, win-back campaigns — personalized at scale by a system that learns from every interaction.</p>
+          <p>Welcome flows, late-payment outreach, move-out check-ins, win-back campaigns, all personalized at scale by a system that learns from every customer interaction.</p>
         </div>
       </div>
     </div>
@@ -1355,7 +1578,7 @@ a:focus-visible, button:focus-visible {
     <div class="leader-block reveal">
       <div class="leader-name">Chris Whaley</div>
       <div class="leader-title">Founder &amp; Managing Principal</div>
-      <p class="leader-bio">Chris founded Flint Hills Capital in 2020 after 25 years in technology sales, consulting and go-to-market strategy. He saw an opportunity to apply the same data-driven, technology-first approach to an industry still largely run on paper and phone calls.</p>
+      <p class="leader-bio">Chris founded Flint Hills Capital in 2020 after 25 years in technology and private equity. He saw an opportunity to apply the same data-driven, technology-first approach to an industry still largely run on paper and phone calls.</p>
       <p class="leader-bio">He was raised in Lawrence, Kansas, and is a sixth-generation Kansan with over 20 years of experience in real estate and more than 50 successful transactions. Chris attended the University of Maryland, and is a US Marine veteran.</p>
     </div>
   </div>
@@ -1402,6 +1625,27 @@ links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links
 document.addEventListener('click', (e) => {
   if (!e.target.closest('nav')) links.classList.remove('open');
 });
+
+// Nav dropdown (click-toggle + close on outside click)
+const navDropdown = document.getElementById('navDropdown');
+const navDropdownTrigger = navDropdown?.querySelector('.nav-dropdown-trigger');
+navDropdownTrigger?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = navDropdown.classList.toggle('is-open');
+  navDropdownTrigger.setAttribute('aria-expanded', String(open));
+});
+document.addEventListener('click', (e) => {
+  if (navDropdown && !navDropdown.contains(e.target)) {
+    navDropdown.classList.remove('is-open');
+    navDropdownTrigger?.setAttribute('aria-expanded', 'false');
+  }
+});
+navDropdown?.querySelectorAll('.nav-dropdown-menu a').forEach(a =>
+  a.addEventListener('click', () => {
+    navDropdown.classList.remove('is-open');
+    navDropdownTrigger?.setAttribute('aria-expanded', 'false');
+  })
+);
 
 // Scroll reveal with stagger support
 const observer = new IntersectionObserver((entries) => {
