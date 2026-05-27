@@ -402,19 +402,26 @@ section { padding: 4.5rem 2rem; }
   letter-spacing: 0.05em;
 }
 .facility-card { position: relative; }
-.exit-badge {
+.exit-badge,
+.coming-badge {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
   font-size: 0.62rem;
   letter-spacing: 0.14em;
   font-weight: 600;
-  color: var(--gold);
   padding: 0.25rem 0.55rem;
-  border: 1px solid var(--gold);
   border-radius: 1px;
   text-transform: uppercase;
   background: #fff;
+}
+.exit-badge {
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.coming-badge {
+  color: var(--slate);
+  border: 1px solid var(--slate);
 }
 .facility-name {
   font-family: var(--serif);
@@ -926,7 +933,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Reno County Storage</div>
           <div class="facility-meta">Hutchinson, KS · 328 Units<br>54,200 SF · Acquired Dec 2025</div>
           <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Office Conversion</span>
           </div>
           <div class="facility-link">renocountystorage.com ↗</div>
@@ -937,10 +943,6 @@ a:focus-visible, button:focus-visible {
         <div class="facility-card-body">
           <div class="facility-name">Reno County Storage — South</div>
           <div class="facility-meta">South Hutchinson, KS · 149 Units<br>27,850 SF · Acquired Dec 2025</div>
-          <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
-            <span class="facility-tag">Flex</span>
-          </div>
           <div class="facility-link">renocountystorage.com ↗</div>
         </div>
         <img src="s-hutch-color.jpg" alt="Reno County Storage South aerial view" loading="lazy" width="180" height="120">
@@ -950,7 +952,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Labette County Storage</div>
           <div class="facility-meta">Parsons, KS · 244 Units<br>43,100 SF · Acquired Feb 2022</div>
           <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Expansion</span>
           </div>
           <div class="facility-link">labettecountystorage.com ↗</div>
@@ -962,7 +963,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Bourbon County Storage</div>
           <div class="facility-meta">Fort Scott, KS · 84 Units<br>12,600 SF · Built November 2025</div>
           <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Ground-Up Development</span>
           </div>
           <div class="facility-link">bourboncountystorage.com ↗</div>
@@ -970,13 +970,10 @@ a:focus-visible, button:focus-visible {
         <img src="bourbon-color.jpg" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120">
       </a>
       <div class="facility-card reveal">
+        <span class="coming-badge">Coming Soon</span>
         <div class="facility-card-body">
           <div class="facility-name">TBA</div>
           <div class="facility-meta">Hutchinson, KS &amp; Area · 304 Units<br>38,000 SF</div>
-          <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
-            <span class="facility-tag">Multi-Location</span>
-          </div>
         </div>
         <img src="sand-hill-placeholder.jpg" alt="Sand Hill Storage — 304 units across multiple locations in Hutchinson" loading="lazy" width="180" height="120">
       </div>
@@ -986,7 +983,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Allen County Storage (Phase 3)</div>
           <div class="facility-meta">Iola, KS · 71 Units<br>7,220 SF</div>
           <div class="facility-tags">
-            <span class="facility-tag">Climate-Controlled</span>
             <span class="facility-tag">Expansion</span>
           </div>
         </div>
@@ -998,7 +994,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Butler County Storage</div>
           <div class="facility-meta">El Dorado, KS · 173 Units<br>33,380 SF · Acquired March 2024</div>
           <div class="facility-tags">
-            <span class="facility-tag">Multi-Location</span>
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
@@ -1010,7 +1005,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Allen County Storage (Phase 1)</div>
           <div class="facility-meta">Gas, KS · 50 Units<br>6,800 SF · Acquired Oct 2021</div>
           <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
@@ -1022,7 +1016,6 @@ a:focus-visible, button:focus-visible {
           <div class="facility-name">Allen County Storage (Phase 2)</div>
           <div class="facility-meta">Iola, KS · 74 Units<br>10,800 SF · Acquired Oct 2021</div>
           <div class="facility-tags">
-            <span class="facility-tag">Drive-Up</span>
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
