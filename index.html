@@ -907,15 +907,15 @@ a:focus-visible, button:focus-visible {
     </div>
     <div class="stat-item reveal">
       <div class="stat-number" data-count="4">0</div>
-      <div class="stat-label">Facilities Sold</div>
+      <div class="stat-label">Successful Exits</div>
     </div>
     <div class="stat-item reveal">
-      <div class="stat-number" data-count="1109" data-duration="2400">0</div>
-      <div class="stat-label">Units Currently Owned</div>
+      <div class="stat-number" data-count="1.64" data-decimals="2" data-suffix="x" data-duration="1800">0</div>
+      <div class="stat-label">Portfolio Stabilized DSCR</div>
     </div>
     <div class="stat-item reveal">
-      <div class="stat-number" data-count="3">0</div>
-      <div class="stat-label">Deals in Pipeline</div>
+      <div class="stat-number" data-count="12.6" data-decimals="1" data-suffix="%" data-duration="1800">0</div>
+      <div class="stat-label">Portfolio Yield on Cost</div>
     </div>
   </div>
 </section>
@@ -1143,20 +1143,32 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // Stat count-up animation when in view
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const formatCount = (value, raw) => raw ? String(value) : value.toLocaleString();
+const formatCount = (value, opts) => {
+  const { decimals, raw, suffix } = opts;
+  let s = decimals > 0 ? value.toFixed(decimals) : String(Math.round(value));
+  if (!raw) {
+    const parts = s.split('.');
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    s = parts.join('.');
+  }
+  return s + (suffix || '');
+};
 const animateCount = (el) => {
-  const target = parseInt(el.dataset.count, 10);
-  const raw = el.dataset.format === 'raw';
-  if (prefersReducedMotion) { el.textContent = formatCount(target, raw); return; }
+  const target = parseFloat(el.dataset.count);
+  const opts = {
+    decimals: parseInt(el.dataset.decimals, 10) || 0,
+    raw: el.dataset.format === 'raw',
+    suffix: el.dataset.suffix || ''
+  };
+  if (prefersReducedMotion) { el.textContent = formatCount(target, opts); return; }
   const duration = parseInt(el.dataset.duration, 10) || 1400;
   const startTime = performance.now();
   const tick = (now) => {
     const progress = Math.min((now - startTime) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-    const value = Math.round(target * eased);
-    el.textContent = formatCount(value, raw);
+    el.textContent = formatCount(target * eased, opts);
     if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = formatCount(target, raw);
+    else el.textContent = formatCount(target, opts);
   };
   requestAnimationFrame(tick);
 };
