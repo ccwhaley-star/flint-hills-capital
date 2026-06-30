@@ -545,6 +545,53 @@ section { padding: 4.5rem 2rem; }
   gap: 3rem;
   align-items: center;
 }
+
+/* Spotlight gallery (chronological build timeline) */
+.spotlight-gallery {
+  margin-top: 3rem;
+  position: relative;
+}
+.spotlight-gallery-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+.spotlight-gallery-strip {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.spotlight-gallery-strip::-webkit-scrollbar { height: 6px; }
+.spotlight-gallery-strip::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); border-radius: 3px; }
+.spotlight-gallery-strip::-webkit-scrollbar-thumb { background: rgba(184,147,90,0.4); border-radius: 3px; }
+.spotlight-gallery-item {
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+}
+.spotlight-gallery-item img {
+  width: 240px;
+  height: 168px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter var(--t-slow) ease;
+}
+.spotlight-gallery-item:hover img { filter: grayscale(0) contrast(1); }
+.spotlight-gallery-caption {
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  font-weight: 500;
+}
 .spotlight-main h3 {
   font-family: var(--serif);
   font-size: 1.4rem;
@@ -1052,6 +1099,60 @@ a:focus-visible, button:focus-visible {
           <span>Built 2025</span>
         </figcaption>
       </figure>
+    </div>
+
+    <div class="spotlight-gallery reveal">
+      <div class="spotlight-gallery-eyebrow">Build Timeline</div>
+      <div class="spotlight-gallery-strip">
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-01-jul2025.jpg" alt="Site preparation on the Fort Scott greenfield site" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Jul 2025 · Site Prep</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-02-jul2025.jpg" alt="Early site work" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Jul 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-03-sep2025.jpg" alt="Steel structure frame going up" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Sep 2025 · Steel Up</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-04-sep2025.jpg" alt="Construction progress" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Sep 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-05-sep2025.jpg" alt="Construction progress" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Sep 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-06-sep2025.jpg" alt="Construction progress" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Sep 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-07-sep2025.jpg" alt="Construction progress" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Sep 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-08-dec2025.jpg" alt="Bourbon County Storage signage installed" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Dec 2025 · Signage</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-09-dec2025.jpg" alt="Finished facility with orange roll-up doors" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Dec 2025 · Opening</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-10-dec2025.jpg" alt="Finished facility detail" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Dec 2025</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-11-jun2026.jpg" alt="Operating facility interior" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Jun 2026 · Operating</div>
+        </div>
+        <div class="spotlight-gallery-item">
+          <img src="spotlight/spotlight-12-jun2026.jpg" alt="Operating facility" loading="lazy" width="240" height="168">
+          <div class="spotlight-gallery-caption">Jun 2026</div>
+        </div>
+      </div>
     </div>
   </div>
 
