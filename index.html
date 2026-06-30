@@ -541,9 +541,36 @@ section { padding: 4.5rem 2rem; }
 .spotlight-content {
   margin-top: 2.5rem;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1.5fr);
+  gap: 4rem;
+  align-items: start;
+}
+.spotlight-meta-eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 0.9rem;
+}
+.spotlight-meta-name {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.05rem);
+  color: var(--navy);
+  line-height: 1.15;
+  margin-bottom: 0.55rem;
+}
+.spotlight-meta-location {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+}
+.spotlight-meta-divider {
+  width: 44px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+  margin: 1.5rem 0 0;
 }
 
 /* Spotlight hero grid (1 large + 4 small, with "Show all photos") */
@@ -1177,8 +1204,13 @@ a:focus-visible, button:focus-visible {
     <h2 class="section-title reveal">Proof of Concept</h2>
 
     <div class="spotlight-content">
+      <div class="spotlight-meta reveal">
+        <div class="spotlight-meta-eyebrow">Case Study</div>
+        <h3 class="spotlight-meta-name">Bourbon County Storage</h3>
+        <div class="spotlight-meta-location">Fort Scott, KS · 2025 · 84 Units</div>
+        <div class="spotlight-meta-divider"></div>
+      </div>
       <div class="spotlight-main reveal">
-        <h3>Bourbon County Storage — Fort Scott, KS</h3>
         <p>In 2025, Flint Hills Capital developed an 84-unit drive-up storage facility on a greenfield site in Fort Scott, KS. The facility was designed, permitted, and built under our direct oversight using local contractors and a lean project management approach.</p>
         <p>After opening, the facility leased at a rate of nearly one unit per day — validating both the market demand thesis and the viability of new construction in secondary and tertiary Midwest markets.</p>
         <p>Bourbon County Storage also served as a proving ground for our SEO and digital presence strategy. We built a purpose-built website optimized for local search, achieving first-page rankings for key Fort Scott storage queries within months of launch — driving organic leads without paid advertising.</p>
