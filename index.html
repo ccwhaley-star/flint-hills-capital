@@ -499,45 +499,6 @@ section { padding: 4.5rem 2rem; }
   line-height: 1.4;
 }
 
-.spotlight-image {
-  position: relative;
-  overflow: hidden;
-  background: var(--navy);
-}
-.spotlight-image::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 5%, var(--gold) 50%, transparent 95%);
-  z-index: 2;
-}
-.spotlight-image img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(1) contrast(1.04);
-  transition: filter var(--t-slow) ease;
-}
-.spotlight-image:hover img { filter: grayscale(0) contrast(1); }
-.spotlight-image-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 1rem 1.1rem 0.85rem;
-  background: linear-gradient(180deg, transparent, rgba(12,30,47,0.88));
-  color: var(--silver);
-  font-size: 0.72rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 1;
-  pointer-events: none;
-}
-.spotlight-image-caption span:last-child { color: var(--gold); }
 .spotlight-content {
   margin-top: 3rem;
   padding-top: 2.25rem;
@@ -900,8 +861,21 @@ footer p {
   .facility-card img { width: 100%; height: 180px; order: -1; }
 
   /* Spotlight */
-  .spotlight-content { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2rem; }
-  .spotlight-image img { aspect-ratio: 16 / 10; }
+  .spotlight-content { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2rem; padding-top: 1.75rem; }
+  .spotlight-hero-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    height: auto;
+    gap: 0.5rem;
+  }
+  .spotlight-hero-tile { aspect-ratio: 4 / 3; }
+  .spotlight-hero-tile.is-large { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 16 / 9; }
+  .spotlight-hero-tile img { height: 100%; }
+  .spotlight-show-all-btn { bottom: 0.75rem; right: 0.75rem; padding: 0.45rem 0.85rem; font-size: 0.65rem; }
+  .spotlight-lightbox { padding: 1rem 0.75rem; }
+  .spotlight-lightbox-nav { width: 40px; height: 40px; }
+  .spotlight-lightbox-nav.prev { left: 0.5rem; }
+  .spotlight-lightbox-nav.next { right: 0.5rem; }
   .spotlight-metrics-band { margin: 2.5rem -1.25rem -4rem; padding: 2.25rem 1.25rem; }
   .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
   .spotlight-metric-item:not(:last-child)::after { display: none; }
