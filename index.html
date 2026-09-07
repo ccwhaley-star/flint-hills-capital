@@ -20,10 +20,13 @@
 <meta name="robots" content="index, follow">
 <meta name="author" content="Flint Hills Capital, LLC">
 <link rel="canonical" href="https://flinthills.capital/">
-<link rel="icon" type="image/png" href="logo-bison.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preload" as="image" href="hero-poster.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Serif+Display&display=swap"></noscript>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -783,7 +786,7 @@ footer {
 footer p {
   font-size: 0.75rem;
   color: var(--steel);
-  opacity: 0.5;
+  opacity: 0.8;
 }
 .footer-links {
   display: flex;
@@ -792,11 +795,11 @@ footer p {
 .footer-links a {
   font-size: 0.75rem;
   color: var(--steel);
-  opacity: 0.5;
+  opacity: 0.8;
   text-decoration: none;
   transition: opacity 0.3s;
 }
-.footer-links a:hover { opacity: 0.8; }
+.footer-links a:hover { opacity: 1; }
 
 /* ── TABLET (769–960px) ── */
 @media (min-width: 769px) and (max-width: 960px) {
@@ -955,7 +958,7 @@ a:focus-visible, button:focus-visible {
   "@type": "Organization",
   "name": "Flint Hills Capital",
   "url": "https://flinthills.capital",
-  "logo": "https://flinthills.capital/logo-bison.png",
+  "logo": "https://flinthills.capital/logo-bison.webp",
   "description": "Self-funded, vertically integrated owner-operator focused on self storage, flex, and small bay industrial space in secondary and tertiary Midwest markets.",
   "address": {
     "@type": "PostalAddress",
@@ -978,7 +981,7 @@ a:focus-visible, button:focus-visible {
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">
-    <img src="logo-bison.png" alt="Flint Hills Capital">
+    <img src="logo-bison.webp" alt="Flint Hills Capital" width="192" height="192">
     Flint Hills <span>Capital</span>
   </a>
   <div class="nav-links" id="navLinks">
@@ -995,7 +998,18 @@ a:focus-visible, button:focus-visible {
 <main id="main">
 <!-- HERO -->
 <section class="hero" id="hero">
-  <video class="hero-video" src="hero-video.mp4" autoplay muted loop playsinline preload="metadata"></video>
+  <video class="hero-video" id="heroVideo" poster="hero-poster.webp" autoplay muted loop playsinline preload="none"></video>
+  <script>
+  (function(){
+    var v=document.getElementById('heroVideo');if(!v)return;
+    var wide=matchMedia('(min-width: 768px)').matches;
+    var motion=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var save=navigator.connection&&navigator.connection.saveData===true;
+    if(!(wide&&motion)||save)return;
+    var src=document.createElement('source');src.src='hero-video.mp4';src.type='video/mp4';
+    v.appendChild(src);v.load();var p=v.play();if(p&&p.catch)p.catch(function(){});
+  })();
+  </script>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-label">Self Storage, Flex and Small Bay Industrial Investments</div>
@@ -1072,7 +1086,7 @@ a:focus-visible, button:focus-visible {
           </div>
           <div class="facility-link">renocountystorage.com ↗</div>
         </div>
-        <img src="reno-17th-color.jpg" alt="Reno County Storage aerial view" loading="lazy" width="180" height="120">
+        <img src="reno-17th-color.webp" alt="Reno County Storage aerial view" loading="lazy" width="180" height="120">
       </a>
       <a href="https://www.renocountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
         <div class="facility-card-body">
@@ -1083,7 +1097,7 @@ a:focus-visible, button:focus-visible {
           </div>
           <div class="facility-link">renocountystorage.com ↗</div>
         </div>
-        <img src="s-hutch-color.jpg" alt="Reno County Storage South aerial view" loading="lazy" width="180" height="120">
+        <img src="s-hutch-color.webp" alt="Reno County Storage South aerial view" loading="lazy" width="180" height="120">
       </a>
       <a href="https://labettecountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
         <div class="facility-card-body">
@@ -1094,7 +1108,7 @@ a:focus-visible, button:focus-visible {
           </div>
           <div class="facility-link">labettecountystorage.com ↗</div>
         </div>
-        <img src="labette-color.jpg" alt="Labette County Storage aerial view" loading="lazy" width="180" height="120">
+        <img src="labette-color.webp" alt="Labette County Storage aerial view" loading="lazy" width="180" height="120">
       </a>
       <a href="https://bourboncountystorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
         <div class="facility-card-body">
@@ -1105,7 +1119,7 @@ a:focus-visible, button:focus-visible {
           </div>
           <div class="facility-link">bourboncountystorage.com ↗</div>
         </div>
-        <img src="bourbon-color.jpg" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120">
+        <img src="bourbon-color.webp" alt="Bourbon County Storage unit" loading="lazy" width="180" height="120">
       </a>
       <a href="https://sandhillstorage.com" target="_blank" rel="noopener noreferrer" class="facility-card reveal">
         <div class="facility-card-body">
@@ -1116,7 +1130,7 @@ a:focus-visible, button:focus-visible {
           </div>
           <div class="facility-link">sandhillstorage.com ↗</div>
         </div>
-        <img src="sand-hills-color.jpg" alt="Sand Hills Storage in Hutchinson, KS" loading="lazy" width="180" height="120">
+        <img src="sand-hills-color.webp" alt="Sand Hills Storage in Hutchinson, KS" loading="lazy" width="180" height="120">
       </a>
       <div class="facility-card reveal">
         <span class="exit-badge">Sold</span>
@@ -1127,7 +1141,7 @@ a:focus-visible, button:focus-visible {
             <span class="facility-tag">Expansion</span>
           </div>
         </div>
-        <img src="allen-phase3-color.jpg" alt="Allen County Storage interior" loading="lazy" width="180" height="120">
+        <img src="allen-phase3-color.webp" alt="Allen County Storage interior" loading="lazy" width="180" height="120">
       </div>
       <div class="facility-card reveal">
         <span class="exit-badge">Sold</span>
@@ -1138,7 +1152,7 @@ a:focus-visible, button:focus-visible {
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
-        <img src="butler-county-grey.jpg" alt="Butler County Storage in El Dorado, KS" loading="lazy" width="180" height="120">
+        <img src="butler-county-grey.webp" alt="Butler County Storage in El Dorado, KS" loading="lazy" width="180" height="120">
       </div>
       <div class="facility-card reveal">
         <span class="exit-badge">Sold</span>
@@ -1149,7 +1163,7 @@ a:focus-visible, button:focus-visible {
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
-        <img src="allen-phase1-grey.jpg" alt="Allen County Storage Phase 1 in Gas, KS" loading="lazy" width="180" height="120">
+        <img src="allen-phase1-grey.webp" alt="Allen County Storage Phase 1 in Gas, KS" loading="lazy" width="180" height="120">
       </div>
       <div class="facility-card reveal">
         <span class="exit-badge">Sold</span>
@@ -1160,7 +1174,7 @@ a:focus-visible, button:focus-visible {
             <span class="facility-tag">Renovation Turnaround</span>
           </div>
         </div>
-        <img src="allen-phase2-grey.jpg" alt="Allen County Storage Phase 2 in Iola, KS" loading="lazy" width="180" height="120">
+        <img src="allen-phase2-grey.webp" alt="Allen County Storage Phase 2 in Iola, KS" loading="lazy" width="180" height="120">
       </div>
     </div>
   </div>
@@ -1188,7 +1202,7 @@ a:focus-visible, button:focus-visible {
 
     <div class="spotlight-hero-grid reveal" id="spotlightHeroGrid">
       <div class="spotlight-hero-tile is-large" data-photo-index="0">
-        <img src="Bourbon.jpg" alt="Bourbon County Storage facility — Fort Scott, KS" loading="lazy">
+        <img src="bourbon-facility.webp" alt="Bourbon County Storage facility — Fort Scott, KS" loading="lazy">
       </div>
       <div class="spotlight-hero-tile" data-photo-index="1">
         <img src="spotlight/spotlight-00-planning.jpg" alt="Reviewing the blueprints on site — pre-construction" loading="lazy">
@@ -1293,9 +1307,9 @@ a:focus-visible, button:focus-visible {
 </footer>
 <div style="text-align:right;padding:12px 24px;background:var(--bg, #0c0b09)">
     <a href="https://flintdigital.ai" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none;opacity:.85;transition:opacity .3s" title="Built by Flint Digital">
-      <span style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.25);text-transform:uppercase">Powered by Flint Digital</span>
+      <span style="font-family:'Courier New',monospace;font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.62);text-transform:uppercase">Powered by Flint Digital</span>
       <span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:4px">
-        <span style="font-family:'Courier New',monospace;font-size:12px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1px">F<span style="color:rgba(196,122,74,.6)">.</span></span>
+        <span style="font-family:'Courier New',monospace;font-size:12px;font-weight:700;color:rgba(255,255,255,.75);letter-spacing:1px">F<span style="color:rgba(196,122,74,.6)">.</span></span>
       </span>
     </a>
   </div>
@@ -1381,7 +1395,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Spotlight lightbox
 (() => {
   const photos = [
-    { src: 'Bourbon.jpg', caption: 'Fort Scott, KS · Iconic Build' },
+    { src: 'bourbon-facility.webp', caption: 'Fort Scott, KS · Iconic Build' },
     { src: 'spotlight/spotlight-00-planning.jpg', caption: 'Pre-Construction · Reviewing the Blueprints' },
     { src: 'spotlight/spotlight-01-jul2025.jpg', caption: 'Jul 2025 · Site Prep' },
     { src: 'spotlight/spotlight-02-jul2025.jpg', caption: 'Jul 2025 · Early Work' },
