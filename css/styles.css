@@ -745,20 +745,6 @@ section { padding: 4.5rem 2rem; }
   transform: translateY(-1px);
 }
 
-/* ── PERFORMANCE METRICS (secondary stats row) ── */
-.stats-secondary {
-  max-width: 960px;
-  margin: 3rem auto 0;
-  padding-top: 2.75rem;
-  border-top: 1px solid rgba(255,255,255,0.08);
-}
-.stats-secondary-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  text-align: center;
-}
-
 /* ── WHAT WE BUY ── */
 .criteria { background: var(--cream); }
 .criteria-layout {
@@ -977,11 +963,6 @@ footer p {
   .spotlight-metrics-band { margin: 2.5rem -1.25rem -4rem; padding: 2.25rem 1.25rem; }
   .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
   .spotlight-metric-item:not(:last-child)::after { display: none; }
-
-  /* Performance metrics */
-  .stats-secondary { margin-top: 2.25rem; padding-top: 2rem; }
-  .stats-secondary-grid { grid-template-columns: repeat(2, 1fr); gap: 1.75rem; }
-  .stats-secondary-grid > .stat-item:last-child { grid-column: 1 / -1; }
 
   /* What We Buy */
   .criteria-layout { grid-template-columns: 1fr; gap: 2.25rem; margin-top: 2rem; }
