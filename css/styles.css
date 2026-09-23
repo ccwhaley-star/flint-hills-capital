@@ -768,8 +768,8 @@ section { padding: var(--section-pad-y) 2rem; }
   grid-template-columns: 0.85fr 1fr;
   gap: 3.5rem;
   margin-top: 2.5rem;
-  align-items: start;
 }
+.criteria-intro { display: flex; flex-direction: column; }
 .criteria-intro .section-text { margin-bottom: 0; }
 .criteria-cta {
   display: inline-block;
@@ -792,9 +792,12 @@ section { padding: var(--section-pad-y) 2rem; }
   transform: translateY(-1px);
 }
 /* Labette hero fills the intro column below the CTA */
-.criteria-photo { margin: 2.75rem 0 0; }
+/* The photo stretches to the criteria list's bottom edge and
+   center-crops, so image and text end on one line at any width */
+.criteria-photo { margin: 2.75rem 0 0; flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .criteria-photo img {
-  width: 100%; height: auto; display: block; border-radius: 4px;
+  width: 100%; flex: 1; min-height: 0; height: 100%; object-fit: cover; object-position: center;
+  display: block; border-radius: 4px;
   filter: grayscale(1) contrast(1.04);
   transition: filter var(--t-slow) ease;
 }
@@ -996,6 +999,8 @@ footer p {
 
   /* What We Buy */
   .criteria-layout { grid-template-columns: 1fr; gap: 2.25rem; margin-top: 2rem; }
+  .criteria-photo { flex: none; }
+  .criteria-photo img { height: auto; aspect-ratio: 4 / 5; }
   .criteria-list { gap: 1.5rem; }
   .criteria-card { padding-top: 1.25rem; }
   .criteria-cta { margin-top: 1.5rem; padding: 0.85rem 2rem; }
