@@ -791,6 +791,22 @@ section { padding: var(--section-pad-y) 2rem; }
   box-shadow: 0 4px 20px rgba(184,147,90,0.25);
   transform: translateY(-1px);
 }
+/* Labette hero fills the intro column below the CTA */
+.criteria-photo { margin: 2.75rem 0 0; }
+.criteria-photo img {
+  width: 100%; height: auto; display: block; border-radius: 4px;
+  filter: grayscale(1) contrast(1.04);
+  transition: filter var(--t-slow) ease;
+}
+.criteria-photo:hover img { filter: grayscale(0) contrast(1); }
+.criteria-photo figcaption {
+  margin-top: 0.6rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
 .criteria-list { display: grid; gap: 1.75rem; }
 .criteria-card {
   padding: 1.5rem 0 0;
