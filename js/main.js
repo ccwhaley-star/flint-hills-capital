@@ -4,15 +4,26 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-// Mobile menu
+// Mobile menu (Meridian6 style): X toggle, scroll lock, closes on link / outside click / Escape
 const toggle = document.getElementById('mobileToggle');
 const links = document.getElementById('navLinks');
-toggle.addEventListener('click', () => links.classList.toggle('open'));
-links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
-// Close mobile menu on outside click
+const setMenu = (open) => {
+  links.classList.toggle('open', open);
+  toggle.classList.toggle('active', open);
+  nav.classList.toggle('menu-open', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.body.style.overflow = open ? 'hidden' : '';
+};
+toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('nav')) links.classList.remove('open');
+  if (links.classList.contains('open') && !e.target.closest('nav')) setMenu(false);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); toggle.focus(); }
+});
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && links.classList.contains('open')) setMenu(false);
 });
 
 // Scroll reveal with stagger support
