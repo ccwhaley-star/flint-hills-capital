@@ -145,3 +145,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     else if (e.key === 'ArrowLeft') prev();
   });
 })();
+
+// Facility tiles: clicking the tile toggles the photo to color; only the URL link navigates
+document.querySelectorAll('.facility-card').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
+    card.classList.toggle('is-active');
+  });
+});

@@ -87,7 +87,7 @@ nav.scrolled {
 }
 .nav-logo:hover { opacity: 0.85; }
 .nav-logo span { color: var(--gold); }
-.nav-logo img { width: 52px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
+.nav-logo img { width: 31px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
   color: var(--silver);
@@ -390,13 +390,19 @@ section { padding: var(--section-pad-y) 2rem; }
   filter: grayscale(1) contrast(1.04);
   transition: filter var(--t-slow) ease;
 }
-.facility-card:hover img { filter: grayscale(0) contrast(1); }
+.facility-card { cursor: pointer; }
+.facility-card:hover img,
+.facility-card.is-active img { filter: grayscale(0) contrast(1); }
+.facility-card.is-active { border-color: var(--gold); }
 .facility-link {
+  display: inline-block;
   margin-top: 0.75rem;
   color: var(--gold-ink);
+  text-decoration: none;
   font-size: var(--fs-sm);
   letter-spacing: 0.05em;
 }
+.facility-link:hover { text-decoration: underline; }
 .facility-card { position: relative; }
 .exit-badge,
 .coming-badge {
@@ -925,7 +931,8 @@ footer p {
   nav { padding: 1rem 1.25rem; }
   nav.scrolled { padding: 0.65rem 1.25rem; }
   .nav-logo { font-size: var(--fs-md); }
-  .nav-logo img { width: 44px; }
+  /* Same visual footprint as the Meridian6 mobile mark (~43x46px) */
+  .nav-logo img { width: auto; height: 34px; }
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
@@ -1027,7 +1034,6 @@ footer p {
   .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0.5rem; }
   /* Band margins must mirror the narrower gutter or the band overflows the viewport */
   .spotlight-metrics-band { margin-inline: -1.15rem; }
-  .nav-logo img { width: 36px; }
 }
 
 /* ── SCROLL ANIMATIONS ── */
