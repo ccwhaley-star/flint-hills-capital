@@ -936,8 +936,8 @@ footer p {
 
 /* ── MOBILE (≤ 768px) ── */
 @media (max-width: 768px) {
-  nav { padding: 1rem 1.25rem; }
-  nav.scrolled { padding: 0.65rem 1.25rem; }
+  nav { padding: 1.25rem 1.25rem; }
+  nav.scrolled { padding: 1rem 1.25rem; }
   .nav-logo { font-size: 1.4rem; }
   /* Same visual footprint as the Meridian6 mobile mark (~43x46px) */
   .nav-logo img { width: auto; height: 30px; margin-right: 0.4rem; }
