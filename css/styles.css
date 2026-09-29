@@ -930,9 +930,9 @@ footer p {
 @media (max-width: 768px) {
   nav { padding: 1rem 1.25rem; }
   nav.scrolled { padding: 0.65rem 1.25rem; }
-  .nav-logo { font-size: var(--fs-md); }
+  .nav-logo { font-size: var(--fs-md); gap: 1rem; }
   /* Same visual footprint as the Meridian6 mobile mark (~43x46px) */
-  .nav-logo img { width: auto; height: 34px; }
+  .nav-logo img { width: auto; height: 30px; }
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
