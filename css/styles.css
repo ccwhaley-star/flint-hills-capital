@@ -87,7 +87,7 @@ nav.scrolled {
 }
 .nav-logo:hover { opacity: 0.85; }
 .nav-logo span { color: var(--gold); }
-.nav-logo img { width: 52px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
+.nav-logo img { width: 31px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
   color: var(--silver);
@@ -931,7 +931,8 @@ footer p {
   nav { padding: 1rem 1.25rem; }
   nav.scrolled { padding: 0.65rem 1.25rem; }
   .nav-logo { font-size: var(--fs-md); }
-  .nav-logo img { width: 44px; }
+  /* Same visual footprint as the Meridian6 mobile mark (~43x46px) */
+  .nav-logo img { width: auto; height: 34px; }
   .nav-links { display: none; }
   .nav-links.open {
     display: flex;
@@ -1033,7 +1034,6 @@ footer p {
   .spotlight-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem 0.5rem; }
   /* Band margins must mirror the narrower gutter or the band overflows the viewport */
   .spotlight-metrics-band { margin-inline: -1.15rem; }
-  .nav-logo img { width: 36px; }
 }
 
 /* ── SCROLL ANIMATIONS ── */
