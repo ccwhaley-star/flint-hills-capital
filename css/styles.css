@@ -87,7 +87,7 @@ nav.scrolled {
 }
 .nav-logo:hover { opacity: 0.85; }
 .nav-logo span { color: var(--gold); }
-.nav-logo img { width: 26px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
+.nav-logo img { width: 22px; height: auto; flex-shrink: 0; filter: brightness(0) invert(1); }
 .nav-links { display: flex; gap: 2rem; align-items: center; }
 .nav-links a {
   color: var(--silver);
@@ -940,7 +940,7 @@ footer p {
   nav.scrolled { padding: 1rem 1.25rem; }
   .nav-logo { font-size: 1.4rem; }
   /* Slightly smaller than the Meridian6 mobile mark */
-  .nav-logo img { width: auto; height: 25px; margin-right: 0.4rem; }
+  .nav-logo img { width: auto; height: 21px; margin-right: 0.4rem; }
   .nav-links { display: none; }
   /* Mobile menu (Meridian6 style): solid panel, large uppercase rows, Contact CTA */
   nav.menu-open { background: var(--navy); box-shadow: 0 1px 30px rgba(0,0,0,0.18); }
