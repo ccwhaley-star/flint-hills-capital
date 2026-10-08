@@ -396,7 +396,7 @@ section { padding: var(--section-pad-y) 2rem; }
   border-radius: 4px;
   flex-shrink: 0;
   filter: grayscale(1) contrast(1.04);
-  transition: filter var(--t-slow) ease;
+  transition: filter var(--t-fast) ease;
 }
 .facility-card { cursor: pointer; }
 .facility-card:hover img,
