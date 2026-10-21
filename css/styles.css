@@ -365,6 +365,7 @@ section { padding: var(--section-pad-y) 2rem; }
 
 /* ── PORTFOLIO ── */
 .portfolio { background: var(--warm-white); }
+.portfolio .container { max-width: 1120px; }
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
