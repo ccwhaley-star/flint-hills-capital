@@ -136,6 +136,7 @@
         <div class="deal-field">
           <label for="f-role">I am a</label>
           <select id="f-role" name="role">
+            <option value="" disabled selected>Select&hellip;</option>
             <option>Owner</option>
             <option>Broker</option>
             <option>Lender</option>
@@ -162,7 +163,7 @@
         </div>
         <div class="deal-field">
           <label for="f-units">Approximate unit count</label>
-          <input type="text" id="f-units" name="units" placeholder="150">
+          <input type="number" id="f-units" name="units" inputmode="numeric" min="1" placeholder="150">
         </div>
       </div>
 
