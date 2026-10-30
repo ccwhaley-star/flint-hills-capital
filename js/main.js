@@ -44,22 +44,29 @@ const formatCount = (value, opts) => {
   }
   return s + (suffix || '');
 };
+// The real value is already rendered in the markup (crawlers, screenshots and
+// no-JS readers never see 0). The animation only plays over it and ends by
+// restoring the rendered text exactly.
 const animateCount = (el) => {
   const target = parseFloat(el.dataset.count);
+  const finalText = el.textContent.trim();
+  if (prefersReducedMotion || !Number.isFinite(target)) return;
   const opts = {
     decimals: parseInt(el.dataset.decimals, 10) || 0,
     raw: el.dataset.format === 'raw',
     suffix: el.dataset.suffix || ''
   };
-  if (prefersReducedMotion) { el.textContent = formatCount(target, opts); return; }
   const duration = parseInt(el.dataset.duration, 10) || 1400;
   const startTime = performance.now();
   const tick = (now) => {
     const progress = Math.min((now - startTime) / duration, 1);
     const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
-    el.textContent = formatCount(target * eased, opts);
-    if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = formatCount(target, opts);
+    if (progress < 1) {
+      el.textContent = formatCount(target * eased, opts);
+      requestAnimationFrame(tick);
+    } else {
+      el.textContent = finalText || formatCount(target, opts);
+    }
   };
   requestAnimationFrame(tick);
 };

@@ -54,7 +54,7 @@
 }
 </script>
 </head>
-<body class="subpage">
+<body class="subpage" id="top">
 <a href="#main" class="skip-link">Skip to main content</a>
 
 <!-- NAV -->
@@ -68,7 +68,7 @@
     <a href="/#portfolio">Portfolio</a>
     <a href="/acquisitions" aria-current="page">Acquisitions</a>
     <a href="/about">About</a>
-    <a href="#contact" class="nav-contact">Contact</a>
+    <a href="/acquisitions#inquiry" class="nav-contact">Contact</a>
   </div>
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
@@ -84,7 +84,7 @@
         <div class="section-label reveal">Acquisition Criteria</div>
         <h1 class="section-title reveal">What We're Looking For</h1>
         <p class="section-text reveal">We acquire self storage and flex space facilities in Kansas and surrounding secondary markets. We also develop ground-up on sites where existing supply can't meet demand. If you own a facility and are considering a sale &mdash; or you're a broker with a listing that fits &mdash; we'd like to hear from you.</p>
-        <div class="reveal"><a href="#contact" class="criteria-cta">Contact Us</a></div>
+        <div class="reveal"><a href="#inquiry" class="criteria-cta">Contact Us</a></div>
         <figure class="criteria-photo reveal">
           <img src="/labette-hero.webp" alt="Drive aisle at Labette County Storage in Parsons, KS" loading="lazy" width="880" height="1100">
           <figcaption>Labette County Storage · Parsons, KS · Acquired 2022</figcaption>
@@ -136,6 +136,7 @@
         <div class="deal-field">
           <label for="f-role">I am a</label>
           <select id="f-role" name="role">
+            <option value="" disabled selected>Select&hellip;</option>
             <option>Owner</option>
             <option>Broker</option>
             <option>Lender</option>
@@ -162,7 +163,7 @@
         </div>
         <div class="deal-field">
           <label for="f-units">Approximate unit count</label>
-          <input type="text" id="f-units" name="units" placeholder="150">
+          <input type="number" id="f-units" name="units" inputmode="numeric" min="1" placeholder="150">
         </div>
       </div>
 
@@ -211,7 +212,7 @@
   <div class="footer-inner">
     <p>&copy; 2026 Flint Hills Capital, LLC. All rights reserved.</p>
     <div class="footer-links">
-      <a href="#hero">Back to Top</a>
+      <a href="#top">Back to Top</a>
     </div>
   </div>
 </footer>
